@@ -2,7 +2,7 @@
 var bytes = require('..')
   , gb = 1 << 30
   , mb = 1 << 20
-  , kb = 1 << 10;i
+  , kb = 1 << 10;
 
 describe('bytes(number)', function () {
   it('should convert numbers >= 1024 to kb string', function () {
