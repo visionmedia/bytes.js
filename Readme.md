@@ -1,7 +1,7 @@
 
 # node-bytes
 
-  Byte string parser.
+  Byte string parser / formatter.
 
 ## Example:
 
@@ -14,10 +14,14 @@ bytes('2mb')
 
 bytes('1gb')
 // => 1073741824
+
+bytes(1073741824)
+// => 1gb
 ```
 
 ## Installation
 
 ```
 $ npm install bytes
+$ component install visionmedia/bytes.js
 ```

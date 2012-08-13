@@ -1,0 +1,7 @@
+{
+  "name": "bytes",
+  "description": "byte string parser / formatter",
+  "keywords": ["bytes", "utility"],
+  "version": "0.1.0",
+  "scripts": ["index.js"]
+}
