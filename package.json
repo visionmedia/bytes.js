@@ -1,7 +1,7 @@
 {
   "name": "bytes",
   "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
-  "description": "byte string parser (5mb etc)",
+  "description": "byte size string parser / serializer",
   "version": "0.1.0",
   "main": "index.js",
   "dependencies": {},
