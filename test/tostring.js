@@ -5,6 +5,10 @@ var bytes = require('..')
   , kb = 1 << 10;
 
 describe('bytes(number)', function () {
+  it('should convert numbers < 1024 to `bytes` string', function () {
+    bytes(200).should.eql('200b');
+  })
+
   it('should convert numbers >= 1024 to kb string', function () {
     bytes(kb).should.equal('1kb')
     bytes(2 * kb).should.equal('2kb')
