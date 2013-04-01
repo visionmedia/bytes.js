@@ -8,5 +8,10 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*"
+  },
+  "component": {
+    "scripts": {
+      "bytes/index.js": "index.js"
+    }
   }
 }
