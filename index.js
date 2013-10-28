@@ -1,4 +1,3 @@
-
 /**
  * Parse byte `size` string.
  *
@@ -9,14 +8,14 @@
 
 module.exports = function(size) {
   if ('number' == typeof size) return convert(size);
-  var parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb)$/)
+  var parts = size.match(/^(\d+(?:\.\d+)?) *(kB|mB|gB)$/)
     , n = parseFloat(parts[1])
     , type = parts[2];
 
   var map = {
-      kb: 1 << 10
-    , mb: 1 << 20
-    , gb: 1 << 30
+      kB: 1 << 10
+    , mB: 1 << 20
+    , gB: 1 << 30
   };
 
   return map[type] * n;
@@ -32,8 +31,8 @@ module.exports = function(size) {
 
 function convert (b) {
   var gb = 1 << 30, mb = 1 << 20, kb = 1 << 10;
-  if (b >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
-  if (b >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
-  if (b >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
+  if (b >= gb) return (Math.round(b / gB * 100) / 100) + 'gB';
+  if (b >= mb) return (Math.round(b / mB * 100) / 100) + 'mB';
+  if (b >= kb) return (Math.round(b / kB * 100) / 100) + 'kB';
   return b + 'b';
 }
