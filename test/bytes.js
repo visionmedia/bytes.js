@@ -21,4 +21,9 @@ describe('bytes(str)', function(){
   it('should allow whitespace', function(){
     bytes('1 mb').should.equal(1024 * 1024);
   })
+  it('should be case-insensitive', function(){
+    bytes('1KB').should.equal(1 << 10);
+    bytes('1Mb').should.equal(1 << 20);
+    bytes('1GB').should.equal(1 << 30);
+  })
 })
