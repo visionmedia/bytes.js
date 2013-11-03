@@ -9,9 +9,9 @@
 
 module.exports = function(size) {
   if ('number' == typeof size) return convert(size);
-  var parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb)$/)
+  var parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb)$/i)
     , n = parseFloat(parts[1])
-    , type = parts[2];
+    , type = parts[2].toLowerCase();
 
   var map = {
       kb: 1 << 10
@@ -32,8 +32,8 @@ module.exports = function(size) {
 
 function convert (b) {
   var gb = 1 << 30, mb = 1 << 20, kb = 1 << 10;
-  if (b >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
-  if (b >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
-  if (b >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
-  return b + 'b';
+  if (b >= gb) return (Math.round(b / gb * 100) / 100) + 'GB';
+  if (b >= mb) return (Math.round(b / mb * 100) / 100) + 'MB';
+  if (b >= kb) return (Math.round(b / kb * 100) / 100) + 'KB';
+  return b + 'B';
 }
