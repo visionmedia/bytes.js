@@ -14,6 +14,10 @@ describe('bytes(str)', function(){
     bytes('5gb').should.equal(5 * 1024 * 1024 * 1024);
   })
 
+  it('should parse tb', function(){
+    bytes('6tb').should.equal(6 * 1024 * 1024 * 1024 * 1024);
+  })
+
   it('should support floats', function(){
     bytes('1.5mb').should.equal(1.5 * 1024 * 1024);
   })
