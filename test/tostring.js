@@ -1,5 +1,6 @@
 
 var bytes = require('..')
+  , tb = (1 << 30) * 1024
   , gb = 1 << 30
   , mb = 1 << 20
   , kb = 1 << 10;
@@ -22,6 +23,11 @@ describe('bytes(number)', function () {
   it('should convert numbers >= (1 << 30) to gb string', function () {
     bytes(gb).should.equal('1gb')
     bytes(2 * gb).should.equal('2gb')
+  })
+
+  it('should convert numbers >= ((1 << 30) * 1024) to tb string', function () {
+    bytes(tb).should.equal('1tb')
+    bytes(2 * tb).should.equal('2tb')
   })
 
   it('should support floats', function () {
