@@ -32,10 +32,10 @@ module.exports = function(size) {
  */
 
 function convert (b) {
-  var tb = ((1 << 30) * 1024), gb = 1 << 30, mb = 1 << 20, kb = 1 << 10;
-  if (b >= tb) return (Math.round(b / tb * 100) / 100) + 'tb';
-  if (b >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
-  if (b >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
-  if (b >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
+  var tb = ((1 << 30) * 1024), gb = 1 << 30, mb = 1 << 20, kb = 1 << 10, abs = Math.abs(b);
+  if (abs >= tb) return (Math.round(b / tb * 100) / 100) + 'tb';
+  if (abs >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
+  if (abs >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
+  if (abs >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
   return b + 'b';
 }
