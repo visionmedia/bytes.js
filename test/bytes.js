@@ -1,4 +1,5 @@
 
+var should = require('should');
 var bytes = require('..');
 
 describe('bytes(str)', function(){
