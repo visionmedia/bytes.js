@@ -9,9 +9,10 @@
 
 module.exports = function(size) {
   if ('number' == typeof size) return convert(size);
-  var parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb|tb)$/)
-    , n = parseFloat(parts[1])
-    , type = parts[2];
+  var n, type, parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb|tb)$/i);
+  if(parts === null) return;
+  n = parseFloat(parts[1]);
+  type = parts[2].toLowerCase();
 
   var map = {
       kb: 1 << 10

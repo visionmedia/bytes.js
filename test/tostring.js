@@ -1,4 +1,5 @@
 
+var should = require('should');
 var bytes = require('..')
   , tb = (1 << 30) * 1024
   , gb = 1 << 30
