@@ -1,0 +1,23 @@
+v1.0.0:
+  date: 2014-05-05
+  changes:
+    - Add negative support. Fixes #6.
+
+v0.3.0:
+  date: 2014-03-19
+  changes:
+    - Added terabyte support.
+
+v0.2.1:
+  date: 2013-04-01
+  changes:
+    - Add .component file.
+
+v0.2.0:
+  date: 2012-10-28
+  changes:
+    - bytes(200).should.eql('200b')
+
+v0.1.0:
+  date: 2012-07-04
+    - Add bytes to string conversion [yields].
