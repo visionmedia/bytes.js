@@ -12,8 +12,11 @@
       "bytes/index.js": "index.js"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "node.extend": "*"
+  },
   "devDependencies": {
+    "chai": "^2.1.1",
     "mocha": "*",
     "should": "*"
   },

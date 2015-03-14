@@ -1,41 +1,60 @@
+'use strict';
+
+var convertFunction = require(__dirname + '/lib/byte-convert.js'),
+    parseFunction = require(__dirname + '/lib/byte-parse.js');
 
 /**
- * Parse byte `size` string.
+ * Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
- * @param {String} size
- * @return {Number}
+ * @param {string|number} value
+ * @param {{
+ *  case: [string],
+ *  thousandSeparator: [string]
+ *  }} [options] Parser options.
+ *
+ * @returns {string|number|null}
  * @api public
  */
+function parser(value, options) {
 
-module.exports = function(size) {
-  if ('number' == typeof size) return convert(size);
-  var parts = size.match(/^(\d+(?:\.\d+)?) *(kb|mb|gb|tb)$/)
-    , n = parseFloat(parts[1])
-    , type = parts[2];
+  if (this) {
+    // Case where parser is called as a constructor
+    /**
+     * Convert the given value in bytes into a string.
+     *
+     * If the value is negative, it is kept as such. If it is a float, it is rounded.
+     *
+     * @param {number} value Value to convert
+     * @param {{
+     *  case: ?string=,
+     *  thousandSeparator: ?string=
+     * }} [options] See byte parser options.
+     *
+     * @return {string}
+     * @api public
+     */
+    this.convert = convertFunction;
 
-  var map = {
-      kb: 1 << 10
-    , mb: 1 << 20
-    , gb: 1 << 30
-    , tb: ((1 << 30) * 1024)
-  };
+    /**
+     * Parse the string value into an integer in bytes. If no unit is given, it is assumed the value is in bytes.
+     *
+     * @param {number} value
+     *
+     * @returns {number|null}
+     * @api public
+     */
+    this.parse = parseFunction;
+  }
 
-  return map[type] * n;
-};
+  if (typeof value === 'string') {
+    return parseFunction(value, options);
+  }
 
-/**
- * convert bytes into string.
- *
- * @param {Number} b - bytes to convert
- * @return {String}
- * @api public
- */
+  if (typeof value === 'number') {
+    return convertFunction(value);
+  }
 
-function convert (b) {
-  var tb = ((1 << 30) * 1024), gb = 1 << 30, mb = 1 << 20, kb = 1 << 10, abs = Math.abs(b);
-  if (abs >= tb) return (Math.round(b / tb * 100) / 100) + 'tb';
-  if (abs >= gb) return (Math.round(b / gb * 100) / 100) + 'gb';
-  if (abs >= mb) return (Math.round(b / mb * 100) / 100) + 'mb';
-  if (abs >= kb) return (Math.round(b / kb * 100) / 100) + 'kb';
-  return b + 'b';
+  return null;
 }
+
+module.exports = parser;

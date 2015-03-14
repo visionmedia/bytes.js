@@ -1,28 +1,46 @@
+'use strict';
 
-var bytes = require('..');
+var bytesParser = require(__dirname + '/../index.js'),
+    expect = require('chai').expect;
 
-describe('bytes(str)', function(){
-  it('should parse kb', function(){
-    bytes('1kb').should.equal(1024);
-  })
+describe('Test constructor', function() {
 
-  it('should parse mb', function(){
-    bytes('1mb').should.equal(1024 * 1024);
-  })
+  describe('Should be usable as a function', function() {
 
-  it('should parse gb', function(){
-    bytes('5gb').should.equal(5 * 1024 * 1024 * 1024);
-  })
+    it('Should return null if input invalid', function() {
+      var inputs = [undefined, null, false, true, function() {}, {}];
+      for (var k in inputs) {
+        expect(bytesParser(inputs[k])).be.null;
+      }
+    });
 
-  it('should parse tb', function(){
-    bytes('6tb').should.equal(6 * 1024 * 1024 * 1024 * 1024);
-  })
+    it('Should parse a string into a number', function() {
+      // This function is testes more accuratly in another test suite
+      expect(bytesParser('1Kb')).to.equal(1024);
+    });
 
-  it('should support floats', function(){
-    bytes('1.5mb').should.equal(1.5 * 1024 * 1024);
-  })
+    it('Should convert a number into a string', function() {
+      // This function is testes more accuratly in another test suite
+      expect(bytesParser(1024)).to.equal('1Kb');
+    });
+  });
 
-  it('should allow whitespace', function(){
-    bytes('1 mb').should.equal(1024 * 1024);
-  })
-})
+  describe('Should be usable as a class', function() {
+
+    it('Shoud be instantiable', function() {
+      var instance = new bytesParser();
+    });
+
+    it('Shoud be able to parse a string into a number', function() {
+      // This function is testes more accuratly in another test suite
+      var instance = new bytesParser();
+      expect(instance.parse('1Kb')).to.equal(1024);
+    });
+
+    it('Should convert a number into a string', function() {
+      // This function is testes more accuratly in another test suite
+      var instance = new bytesParser();
+      expect(instance.convert(1024)).to.equal('1Kb');
+    });
+  });
+});
