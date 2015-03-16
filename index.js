@@ -10,12 +10,12 @@ var convertFunction = require(__dirname + '/lib/byte-convert.js'),
  * @param {{
  *  case: [string],
  *  thousandsSeparator: [string]
- *  }} [options] Parser options.
+ *  }} [options] Bytes options.
  *
  * @returns {string|number|null}
  * @constructor
  */
-function Parser() {}
+function Bytes() {}
 
 /**
  * Convert the given value in bytes into a string.
@@ -31,7 +31,7 @@ function Parser() {}
  * @return {string}
  * @api public
  */
-Parser.prototype.convert = convertFunction;
+Bytes.prototype.convert = convertFunction;
 
 /**
  * Parse the string value into an integer in bytes. If no unit is given, it is assumed the value is in bytes.
@@ -41,6 +41,6 @@ Parser.prototype.convert = convertFunction;
  * @returns {number|null}
  * @api public
  */
-Parser.prototype.parse = parseFunction;
+Bytes.prototype.parse = parseFunction;
 
-module.exports = new Parser();
+module.exports = new Bytes();

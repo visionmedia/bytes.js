@@ -1,21 +1,21 @@
 'use strict';
 
-var BytesParser = require(__dirname + '/../index.js'),
+var Bytes = require(__dirname + '/../index.js'),
     expect = require('chai').expect;
 
 describe('Test constructor', function() {
 
   it('Shoud not be instantiable', function() {
-    expect(function() {new BytesParser();}).to.throw();
+    expect(function() {new Bytes();}).to.throw();
   });
 
   it('Shoud be able to parse a string into a number', function() {
     // This function is testes more accuratly in another test suite
-    expect(BytesParser.parse('1kB')).to.equal(1024);
+    expect(Bytes.parse('1kB')).to.equal(1024);
   });
 
   it('Should convert a number into a string', function() {
     // This function is testes more accuratly in another test suite
-    expect(BytesParser.convert(1024)).to.equal('1kB');
+    expect(Bytes.convert(1024)).to.equal('1kB');
   });
 });
