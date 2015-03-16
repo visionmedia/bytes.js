@@ -1,10 +1,22 @@
 {
   "name": "bytes",
-  "description": "Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.",
   "version": "1.1.0",
+  "description": "Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.",
+  "keywords": [
+    "byte",
+    "bytes",
+    "utility",
+    "parse",
+    "parser",
+    "convert",
+    "converter"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/visionmedia/bytes.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/visionmedia/bytes.js/issues"
   },
   "main": "index.js",
   "component": {
