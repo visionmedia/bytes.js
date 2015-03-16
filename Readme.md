@@ -4,12 +4,9 @@ Byte string parser / formatter.
 
 ## Usage
 
-### Used as a class
 
 ```js
 var BytesParser = require('bytes');
-
-var bytesParser = new BytesParser();
 ```
 
 #### BytesParser.convert(value, [options]): string|null
@@ -28,7 +25,7 @@ Convert the given value in bytes into a string. If the value is negative, it is 
 
 | Property          | Type   | Description                                                                             |
 |-------------------|--------|-----------------------------------------------------------------------------------------|
-| thousandSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
+| thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
 
 **Returns**
 
@@ -40,10 +37,13 @@ Convert the given value in bytes into a string. If the value is negative, it is 
 
 ```js
 bytesParser.convert(1024);
-// output: '1Kb'
+// output: '1kB'
 
-bytesParser.convert(1024, {case: 'lowercase'});
-// output: '1kb'
+bytesParser.convert(1000);
+// output: '1 000B'
+
+bytesParser.convert(1024, {thousandsSeparator: null});
+// output: '1000B'
 ```
 
 #### BytesParser.parse(stringValue)
@@ -65,7 +65,7 @@ Parse the string value into an integer in bytes. If no unit is given, it is assu
 **Example**
 
 ```js
-bytesParser.parse('1Kb');
+bytesParser.parse('1kB');
 // output: 1024
 
 bytesParser.parse('1024');

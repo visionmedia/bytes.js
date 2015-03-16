@@ -57,9 +57,9 @@ describe('Test byte convert function', function() {
 
   it('Support custom thousands separator', function() {
     expect(convert(1000).toLowerCase()).to.equal('1 000b');
-    expect(convert(1000, {thousandSeparator: '.'}).toLowerCase()).to.equal('1.000b');
-    expect(convert(1000, {thousandSeparator: ','}).toLowerCase()).to.equal('1,000b');
-    expect(convert(1000, {thousandSeparator: ''}).toLowerCase()).to.equal('1000b');
+    expect(convert(1000, {thousandsSeparator: '.'}).toLowerCase()).to.equal('1.000b');
+    expect(convert(1000, {thousandsSeparator: ','}).toLowerCase()).to.equal('1,000b');
+    expect(convert(1000, {thousandsSeparator: ''}).toLowerCase()).to.equal('1000b');
   });
 
   it('Should support floats', function() {

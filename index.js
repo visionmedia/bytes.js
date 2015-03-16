@@ -9,7 +9,7 @@ var convertFunction = require(__dirname + '/lib/byte-convert.js'),
  * @param {string|number} value
  * @param {{
  *  case: [string],
- *  thousandSeparator: [string]
+ *  thousandsSeparator: [string]
  *  }} [options] Parser options.
  *
  * @returns {string|number|null}
@@ -25,7 +25,7 @@ function Parser() {}
  * @param {number} value Value to convert
  * @param {{
  *  case: ?string=,
- *  thousandSeparator: ?string=
+ *  thousandsSeparator: ?string=
  * }} [options] See byte parser options.
  *
  * @return {string}

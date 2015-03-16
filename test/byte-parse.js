@@ -12,19 +12,19 @@ describe('Test byte parse function', function() {
     }
   });
 
-  it('Should parse KB', function() {
+  it('Should parse kB', function() {
 
-    var inputs = givePossibleStringValues(1, 'KB');
+    var inputs = givePossibleStringValues(1, 'kB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(1 * Math.pow(1024, 1));
     }
 
-    inputs = givePossibleStringValues(0.5, 'KB');
+    inputs = givePossibleStringValues(0.5, 'kB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(0.5 * Math.pow(1024, 1));
     }
 
-    inputs = givePossibleStringValues(1.5, 'KB');
+    inputs = givePossibleStringValues(1.5, 'kB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(1.5 * Math.pow(1024, 1));
     }
