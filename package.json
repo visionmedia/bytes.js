@@ -1,7 +1,7 @@
 {
   "name": "bytes",
-  "description": "Byte size string parser / serializer.",
-  "version": "1.0.0",
+  "description": "Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/visionmedia/bytes.js.git"

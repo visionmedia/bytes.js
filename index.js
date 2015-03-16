@@ -6,13 +6,6 @@ var convertFunction = require(__dirname + '/lib/byte-convert.js'),
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
- * @param {string|number} value
- * @param {{
- *  case: [string],
- *  thousandsSeparator: [string]
- *  }} [options] Bytes options.
- *
- * @returns {string|number|null}
  * @constructor
  */
 function Bytes() {}
@@ -29,7 +22,6 @@ function Bytes() {}
  * }} [options] See byte parser options.
  *
  * @return {string}
- * @api public
  */
 Bytes.prototype.convert = convertFunction;
 
@@ -39,8 +31,33 @@ Bytes.prototype.convert = convertFunction;
  * @param {number} value
  *
  * @returns {number|null}
- * @api public
  */
 Bytes.prototype.parse = parseFunction;
 
-module.exports = new Bytes();
+/**
+ *Convert the given value in bytes into a string or parse to string to an integer in bytes.
+ *
+ * @param {string|number} value
+ * @param {{
+ *  case: [string],
+ *  thousandsSeparator: [string]
+ *  }} [options] bytes options.
+ *
+ * @returns {string|number|null}
+ */
+function bytes(value, options) {
+
+  var bytesObj = new Bytes();
+
+  if (typeof value === 'string') {
+    return bytesObj.parse(value);
+  }
+
+  if (typeof value === 'number') {
+    return bytesObj.convert(value);
+  }
+
+  return null;
+}
+
+module.exports = bytes;

@@ -6,10 +6,10 @@ Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-
 
 
 ```js
-var Bytes = require('bytes');
+var bytes = require('bytes');
 ```
 
-#### Bytes.convert(value, [options]): string|null
+#### bytes(number value, [options]): string|null
 
 Convert the given value in bytes into a string. If the value is negative, it is kept as such. If it is a float, it is
  rounded.
@@ -36,17 +36,17 @@ Convert the given value in bytes into a string. If the value is negative, it is 
 **Example**
 
 ```js
-Bytes.convert(1024);
+bytes(1024);
 // output: '1kB'
 
-Bytes.convert(1000);
+bytes(1000);
 // output: '1 000B'
 
-Bytes.convert(1024, {thousandsSeparator: null});
+bytes(1024, {thousandsSeparator: null});
 // output: '1000B'
 ```
 
-#### Bytes.parse(stringValue)
+#### Bytes(string value): number|null
 
 Parse the string value into an integer in bytes. If no unit is given, it is assumed the value is in bytes.
 
@@ -54,7 +54,7 @@ Parse the string value into an integer in bytes. If no unit is given, it is assu
 
 | Name          | Type   | Description        |
 |---------------|--------|--------------------|
-| stringValue   | `string` | String to parse.   |
+| value   | `string` | String to parse.   |
 
 **Returns**
 
@@ -65,28 +65,10 @@ Parse the string value into an integer in bytes. If no unit is given, it is assu
 **Example**
 
 ```js
-Bytes.parse('1kB');
+bytes('1kB');
 // output: 1024
 
-Bytes.parse('1024');
-// output: 1024
-```
-
-### Used as a function
-
-```js
-var Bytes = require('bytes');
-
-Bytes(1024);
-// output: '1kB'
-
-Bytes(1000, {thousandsSeparator: ','});
-// output: '1 000B'
-
-Bytes('1Kb');
-// output: 1024
-
-Bytes('1024');
+bytes('1024');
 // output: 1024
 ```
 
