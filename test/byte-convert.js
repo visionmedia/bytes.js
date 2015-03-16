@@ -47,28 +47,12 @@ describe('Test byte convert function', function() {
     expect(convert(2 * tb).toLowerCase()).to.equal('2tb');
   });
 
-  it('Should return capitalize case by default', function() {
-    expect(convert(10)).to.equal('10b');
-    expect(convert(kb)).to.equal('1Kb');
-    expect(convert(mb)).to.equal('1Mb');
-    expect(convert(gb)).to.equal('1Gb');
-    expect(convert(tb)).to.equal('1Tb');
-  });
-
-  it('Support lowercase option', function() {
-    expect(convert(10, {case: 'lowercase'})).to.equal('10b');
-    expect(convert(kb, {case: 'lowercase'})).to.equal('1kb');
-    expect(convert(mb, {case: 'lowercase'})).to.equal('1mb');
-    expect(convert(gb, {case: 'lowercase'})).to.equal('1gb');
-    expect(convert(tb, {case: 'lowercase'})).to.equal('1tb');
-  });
-
-  it('Support uppercase option', function() {
-    expect(convert(10, {case: 'uppercase'})).to.equal('10B');
-    expect(convert(kb, {case: 'uppercase'})).to.equal('1KB');
-    expect(convert(mb, {case: 'uppercase'})).to.equal('1MB');
-    expect(convert(gb, {case: 'uppercase'})).to.equal('1GB');
-    expect(convert(tb, {case: 'uppercase'})).to.equal('1TB');
+  it('Should return standard case', function() {
+    expect(convert(10)).to.equal('10B');
+    expect(convert(kb)).to.equal('1kB');
+    expect(convert(mb)).to.equal('1MB');
+    expect(convert(gb)).to.equal('1GB');
+    expect(convert(tb)).to.equal('1TB');
   });
 
   it('Support custom thousands separator', function() {
@@ -94,45 +78,3 @@ function invalidValuesProvider() {
 
   return [undefined, null, true, false, '', 'string', function() {}, {}];
 }
-
-/**
- * Converts a string with a uppercase for the first letter of each words.
- *
- * @returns {string}
- */
-String.prototype.capitalizeFirstLetter = function capitalizeFirstLetter() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
-/**
- * Return possible combinations for the given value and unit.
- *
- * @param {number} value Value.
- * @param {string} units Unit in which the value will be.
- *
- * @returns {string[]} Results
- */
-function givePossibleStringValues(value, units) {
-
-  var unitsArray = [
-    units.toLowerCase(),
-    units.toUpperCase(),
-    units.capitalizeFirstLetter()
-  ];
-
-  var returnedValue = [];
-
-  for (var k in unitsArray) {
-    returnedValue.push(value.toString() + unitsArray[k]);
-  }
-
-  return returnedValue;
-}
-
-
-//
-//var bytes = require('..')
-
-//describe('bytes(number)', function () {
-
-//})

@@ -12,52 +12,52 @@ describe('Test byte parse function', function() {
     }
   });
 
-  it('Should parse Kb', function() {
+  it('Should parse KB', function() {
 
-    var inputs = givePossibleStringValues(1, 'Kb');
+    var inputs = givePossibleStringValues(1, 'KB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(1 * Math.pow(1024, 1));
     }
 
-    inputs = givePossibleStringValues(0.5, 'Kb');
+    inputs = givePossibleStringValues(0.5, 'KB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(0.5 * Math.pow(1024, 1));
     }
 
-    inputs = givePossibleStringValues(1.5, 'Kb');
+    inputs = givePossibleStringValues(1.5, 'KB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(1.5 * Math.pow(1024, 1));
     }
   });
 
-  it('Should parse Mb', function() {
+  it('Should parse MB', function() {
 
-    var inputs = givePossibleStringValues(1, 'Mb');
+    var inputs = givePossibleStringValues(1, 'MB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(Math.pow(1024, 2));
     }
   });
 
-  it('Should parse Gb', function() {
-    var inputs = givePossibleStringValues(1, 'Gb');
+  it('Should parse GB', function() {
+    var inputs = givePossibleStringValues(1, 'GB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(Math.pow(1024, 3));
     }
   });
 
-  it('Should parse Tb', function() {
+  it('Should parse TB', function() {
 
-    var inputs = givePossibleStringValues(1, 'Tb');
+    var inputs = givePossibleStringValues(1, 'TB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(Math.pow(1024, 4));
     }
 
-    inputs = givePossibleStringValues(0.5, 'Tb');
+    inputs = givePossibleStringValues(0.5, 'TB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(0.5 * Math.pow(1024, 4));
     }
 
-    inputs = givePossibleStringValues(1.5, 'Tb');
+    inputs = givePossibleStringValues(1.5, 'TB');
     for (var k in inputs) {
       expect(parse(inputs[k])).to.equal(1.5 * Math.pow(1024, 4));
     }
@@ -72,11 +72,11 @@ describe('Test byte parse function', function() {
   it('Should accept negative values', function() {
     expect(parse('-1')).to.equal(-1);
     expect(parse('-1024')).to.equal(-1024);
-    expect(parse('-1.5Tb')).to.equal(-1.5 * Math.pow(1024, 4));
+    expect(parse('-1.5TB')).to.equal(-1.5 * Math.pow(1024, 4));
   });
 
   it('Should allow whitespace', function() {
-    expect(parse('1 Tb')).to.equal(1 * Math.pow(1024, 4));
+    expect(parse('1 TB')).to.equal(1 * Math.pow(1024, 4));
   });
 });
 
@@ -91,29 +91,29 @@ function invalidValuesProvider() {
 }
 
 /**
- * Converts a string with a uppercase for the first letter of each words.
+ * Return possible combinations for the given value and unit.
  *
- * @returns {string}
+ * @param {number} value Value.
+ * @param {string} units Unit in which the value will be. Expect to be a 2 characters long string.
+ *
+ * @returns {string[]} Results
  */
-String.prototype.capitalizeFirstLetter = function capitalizeFirstLetter() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
-/**
-* Return possible combinations for the given value and unit.
-*
-* @param {number} value Value.
-* @param {string} units Unit in which the value will be.
-*
-* @returns {string[]} Results
-*/
 function givePossibleStringValues(value, units) {
 
   var unitsArray = [
     units.toLowerCase(),
-    units.toUpperCase(),
-    units.capitalizeFirstLetter()
+    units.toUpperCase()
   ];
+
+  // Set first letter uppercase and second lowercase
+  var string = units.toLocaleLowerCase();
+  string = string.charAt(0).toUpperCase() + string.slice(1);
+  unitsArray.push(string);
+
+  // Set first letter lowercase and second uppercase
+  string = units.toLocaleLowerCase();
+  string = string.slice(0, 1) + string.charAt(1).toUpperCase();
+  unitsArray.push(string);
 
   var returnedValue = [];
 

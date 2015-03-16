@@ -28,9 +28,7 @@ Convert the given value in bytes into a string. If the value is negative, it is 
 
 | Property          | Type   | Description                                                                             |
 |-------------------|--------|-----------------------------------------------------------------------------------------|
-| case | `string` | Valid values: `uppercase`, `lowercase` and `capitalize`, default value to `capitalize`. |
-| thousandSeparator | `string` | Example of values: `' '`, `','` and `.`... Default value to `' '`.
-   |
+| thousandSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
 
 **Returns**
 
@@ -80,10 +78,10 @@ bytesParser.parse('1024');
 var bytesParser = require('bytes');
 
 bytesParser(1024);
-// output: '1Kb'
+// output: '1kB'
 
-bytesParser(1024, {case: 'lowercase'});
-// output: '1kb'
+bytesParser(1000, {thousandsSeparator: ','});
+// output: '1 000B'
 
 bytesParser('1Kb');
 // output: 1024
