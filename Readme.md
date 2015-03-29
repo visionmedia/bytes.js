@@ -40,10 +40,10 @@ bytes(1024);
 // output: '1kB'
 
 bytes(1000);
-// output: '1 000B'
-
-bytes(1024, {thousandsSeparator: null});
 // output: '1000B'
+
+bytes(1024, {thousandsSeparator: ' '});
+// output: '1 000B'
 ```
 
 #### Bytes(string value): number|null
