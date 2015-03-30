@@ -54,7 +54,7 @@ function bytes(value, options) {
   }
 
   if (typeof value === 'number') {
-    return bytesObj.convert(value);
+    return bytesObj.convert(value, options);
   }
 
   return null;

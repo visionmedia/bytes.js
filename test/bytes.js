@@ -19,4 +19,9 @@ describe('Test constructor', function() {
     // This function is testes more accuratly in another test suite
     expect(bytes(1024)).to.equal('1kB');
   });
+
+  it('Should convert a number into a string with options', function() {
+    // This function is testes more accuratly in another test suite
+    expect(bytes(1000, {thousandsSeparator: ' '})).to.equal('1 000B');
+  });
 });

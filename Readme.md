@@ -42,7 +42,7 @@ bytes(1024);
 bytes(1000);
 // output: '1000B'
 
-bytes(1024, {thousandsSeparator: ' '});
+bytes(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
 ```
 
