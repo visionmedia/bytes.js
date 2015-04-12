@@ -1,6 +1,6 @@
 {
   "name": "bytes",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.",
   "keywords": [
     "byte",
