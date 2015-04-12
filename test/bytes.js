@@ -1,28 +1,26 @@
+'use strict';
 
-var bytes = require('..');
+var bytes = require(__dirname + '/../index.js'),
+    expect = require('chai').expect;
 
-describe('bytes(str)', function(){
-  it('should parse kb', function(){
-    bytes('1kb').should.equal(1024);
-  })
+describe('Test constructor', function(){
+  it('Expect a function', function(){
+    expect(typeof bytes).to.equal('function');
+    expect(new bytes()).to.be.empty;
+  });
 
-  it('should parse mb', function(){
-    bytes('1mb').should.equal(1024 * 1024);
-  })
+  it('Shoud be able to parse a string into a number', function(){
+    // This function is testes more accuratly in another test suite
+    expect(bytes('1kB')).to.equal(1024);
+  });
 
-  it('should parse gb', function(){
-    bytes('5gb').should.equal(5 * 1024 * 1024 * 1024);
-  })
+  it('Should convert a number into a string', function(){
+    // This function is testes more accuratly in another test suite
+    expect(bytes(1024)).to.equal('1kB');
+  });
 
-  it('should parse tb', function(){
-    bytes('6tb').should.equal(6 * 1024 * 1024 * 1024 * 1024);
-  })
-
-  it('should support floats', function(){
-    bytes('1.5mb').should.equal(1.5 * 1024 * 1024);
-  })
-
-  it('should allow whitespace', function(){
-    bytes('1 mb').should.equal(1024 * 1024);
-  })
-})
+  it('Should convert a number into a string with options', function(){
+    // This function is testes more accuratly in another test suite
+    expect(bytes(1000, {thousandsSeparator: ' '})).to.equal('1 000B');
+  });
+});

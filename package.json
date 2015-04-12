@@ -1,22 +1,67 @@
 {
   "name": "bytes",
-  "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
-  "description": "byte size string parser / serializer",
+  "version": "2.0.0",
+  "description": "Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.",
+  "keywords": [
+    "byte",
+    "bytes",
+    "utility",
+    "parse",
+    "parser",
+    "convert",
+    "converter"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/visionmedia/bytes.js.git"
   },
-  "version": "1.0.0",
-  "license": "MIT",
-  "main": "index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+  "bugs": {
+    "url": "https://github.com/visionmedia/bytes.js/issues"
   },
+  "main": "index.js",
   "component": {
     "scripts": {
       "bytes/index.js": "index.js"
     }
-  }
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --check-leaks"
+  },
+  "dependencies": {
+    "node.extend": "*"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "author": {
+    "name": "TJ Holowaychuk",
+    "email": "tj@vision-media.ca",
+    "url": "http://tjholowaychuk.com"
+  },
+  "contributors": [
+    {
+      "name": "michaelsanford",
+      "url": "https://medium.com/@msanford"
+    },
+    {
+      "name": "vladikoff",
+      "email": "github@vf.io",
+      "url": "http://vf.io"
+    },
+    {
+      "name": "justindeguzman",
+      "url": "http://justindeguzman.net"
+    },
+    {
+      "name": "mixu",
+      "url": "http://mixu.net"
+    },
+    {
+      "name": "theofidry",
+      "email": "theo.fidry@gmail.com",
+      "url": "https://github.com/theofidry"
+    }
+  ],
+  "license": "MIT"
 }
