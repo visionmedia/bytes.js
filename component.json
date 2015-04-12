@@ -1,7 +1,12 @@
 {
   "name": "bytes",
-  "description": "byte size string parser / serializer",
-  "keywords": ["bytes", "utility"],
+  "description": "Byte size string parser / serializer.",
+  "repository": "visionmedia/bytes.js.git",
+  "keywords": [
+    "bytes",
+    "utility"
+  ],
   "version": "0.2.1",
-  "scripts": ["index.js"]
+  "scripts": ["index.js"],
+  "license": "MIT"
 }
