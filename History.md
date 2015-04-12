@@ -1,4 +1,9 @@
 
+2.0.0 / 2015-04-12
+==================
+
+  * rewrite to fix a few issues, see: https://github.com/visionmedia/bytes.js/pull/20#issuecomment-92121650
+
 1.0.0 / 2014-05-05
 ==================
 
@@ -9,17 +14,17 @@
 
  * added terabyte support
 
-0.2.1 / 2013-04-01 
+0.2.1 / 2013-04-01
 ==================
 
   * add .component
 
-0.2.0 / 2012-10-28 
+0.2.0 / 2012-10-28
 ==================
 
   * bytes(200).should.eql('200b')
 
-0.1.0 / 2012-07-04 
+0.1.0 / 2012-07-04
 ==================
 
   * add bytes to string conversion [yields]
