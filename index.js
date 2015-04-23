@@ -1,7 +1,7 @@
 'use strict';
 
-var convertFunction = require(__dirname + '/lib/byte-convert.js');
-var parseFunction = require(__dirname + '/lib/byte-parse.js');
+var convertFunction = require('./lib/byte-convert.js');
+var parseFunction = require('./lib/byte-parse.js');
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
