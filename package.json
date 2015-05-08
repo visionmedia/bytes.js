@@ -60,5 +60,12 @@
       "url": "https://github.com/theofidry"
     }
   ],
+  "files": [
+    "lib/",
+    "History.md",
+    "LICENSE",
+    "Readme.md",
+    "index.js"
+  ],
   "license": "MIT"
 }
