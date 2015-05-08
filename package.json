@@ -27,9 +27,6 @@
   "scripts": {
     "test": "mocha --check-leaks"
   },
-  "dependencies": {
-    "node.extend": "*"
-  },
   "devDependencies": {
     "chai": "*",
     "mocha": "*"
