@@ -1,8 +1,17 @@
+2.0.1 / 2015-05-07
+==================
+
+  * fix browserify require
+  * remove node.extend dependency
 
 2.0.0 / 2015-04-12
 ==================
 
-  * rewrite to fix a few issues, see: https://github.com/visionmedia/bytes.js/pull/20#issuecomment-92121650
+  * add option "case"
+  * add option "thousandsSeparator"
+  * return "null" on invalid parse input
+  * support proper round-trip: bytes(bytes(num)) === num
+  * units no longer case sensitive when parsing
 
 1.0.0 / 2014-05-05
 ==================
