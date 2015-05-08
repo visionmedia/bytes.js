@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "test": "mocha --check-leaks"
+    "test": "mocha --check-leaks --reporter spec"
   },
   "devDependencies": {
     "chai": "*",
