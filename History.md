@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * remove unnecessary object construction
+
 2.0.1 / 2015-05-07
 ==================
 
