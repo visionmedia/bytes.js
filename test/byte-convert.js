@@ -1,7 +1,7 @@
 'use strict';
 
-var convert = require(__dirname + '/../lib/byte-convert.js'),
-    expect = require('chai').expect;
+var assert = require('assert');
+var convert = require('../lib/byte-convert.js');
 
 describe('Test byte convert function', function(){
   var tb = (1 << 30) * 1024,
@@ -10,72 +10,66 @@ describe('Test byte convert function', function(){
       kb = 1 << 10;
 
   it('Should return null if input invalid', function(){
-    var inputs = invalidValuesProvider();
-    for (var k in inputs) {
-      expect(convert(inputs[k])).be.null;
-    }
+    assert.strictEqual(convert(undefined), null);
+    assert.strictEqual(convert(null), null);
+    assert.strictEqual(convert(true), null);
+    assert.strictEqual(convert(false), null);
+    assert.strictEqual(convert(''), null);
+    assert.strictEqual(convert('string'), null);
+    assert.strictEqual(convert(function(){}), null);
+    assert.strictEqual(convert({}), null);
   });
 
   it('Should convert numbers < 1024 to `bytes` string', function(){
-    expect(convert(0).toLowerCase()).to.equal('0b');
-    expect(convert(100).toLowerCase()).to.equal('100b');
-    expect(convert(-100).toLowerCase()).to.equal('-100b');
+    assert.equal(convert(0).toLowerCase(), '0b');
+    assert.equal(convert(100).toLowerCase(), '100b');
+    assert.equal(convert(-100).toLowerCase(), '-100b');
   });
 
   it('Should convert numbers >= 1 024 to kb string', function(){
-    expect(convert(kb).toLowerCase()).to.equal('1kb');
-    expect(convert(-kb).toLowerCase()).to.equal('-1kb');
-    expect(convert(2 * kb).toLowerCase()).to.equal('2kb');
+    assert.equal(convert(kb).toLowerCase(), '1kb');
+    assert.equal(convert(-kb).toLowerCase(), '-1kb');
+    assert.equal(convert(2 * kb).toLowerCase(), '2kb');
   });
 
   it('Should convert numbers >= 1 048 576 to mb string', function(){
-    expect(convert(mb).toLowerCase()).to.equal('1mb');
-    expect(convert(-mb).toLowerCase()).to.equal('-1mb');
-    expect(convert(2 * mb).toLowerCase()).to.equal('2mb');
+    assert.equal(convert(mb).toLowerCase(), '1mb');
+    assert.equal(convert(-mb).toLowerCase(), '-1mb');
+    assert.equal(convert(2 * mb).toLowerCase(), '2mb');
   });
 
   it('Should convert numbers >= (1 << 30) to gb string', function(){
-    expect(convert(gb).toLowerCase()).to.equal('1gb');
-    expect(convert(-gb).toLowerCase()).to.equal('-1gb');
-    expect(convert(2 * gb).toLowerCase()).to.equal('2gb');
+    assert.equal(convert(gb).toLowerCase(), '1gb');
+    assert.equal(convert(-gb).toLowerCase(), '-1gb');
+    assert.equal(convert(2 * gb).toLowerCase(), '2gb');
   });
 
   it('Should convert numbers >= ((1 << 30) * 1024) to tb string', function(){
-    expect(convert(tb).toLowerCase()).to.equal('1tb');
-    expect(convert(-tb).toLowerCase()).to.equal('-1tb');
-    expect(convert(2 * tb).toLowerCase()).to.equal('2tb');
+    assert.equal(convert(tb).toLowerCase(), '1tb');
+    assert.equal(convert(-tb).toLowerCase(), '-1tb');
+    assert.equal(convert(2 * tb).toLowerCase(), '2tb');
   });
 
   it('Should return standard case', function(){
-    expect(convert(10)).to.equal('10B');
-    expect(convert(kb)).to.equal('1kB');
-    expect(convert(mb)).to.equal('1MB');
-    expect(convert(gb)).to.equal('1GB');
-    expect(convert(tb)).to.equal('1TB');
+    assert.equal(convert(10), '10B');
+    assert.equal(convert(kb), '1kB');
+    assert.equal(convert(mb), '1MB');
+    assert.equal(convert(gb), '1GB');
+    assert.equal(convert(tb), '1TB');
   });
 
   it('Support custom thousands separator', function(){
-    expect(convert(1000).toLowerCase()).to.equal('1000b');
-    expect(convert(1000, {thousandsSeparator: ''}).toLowerCase()).to.equal('1000b');
-    expect(convert(1000, {thousandsSeparator: null}).toLowerCase()).to.equal('1000b');
-    expect(convert(1000, {thousandsSeparator: '.'}).toLowerCase()).to.equal('1.000b');
-    expect(convert(1000, {thousandsSeparator: ','}).toLowerCase()).to.equal('1,000b');
-    expect(convert(1000, {thousandsSeparator: ' '}).toLowerCase()).to.equal('1 000b');
+    assert.equal(convert(1000).toLowerCase(), '1000b');
+    assert.equal(convert(1000, {thousandsSeparator: ''}).toLowerCase(), '1000b');
+    assert.equal(convert(1000, {thousandsSeparator: null}).toLowerCase(), '1000b');
+    assert.equal(convert(1000, {thousandsSeparator: '.'}).toLowerCase(), '1.000b');
+    assert.equal(convert(1000, {thousandsSeparator: ','}).toLowerCase(), '1,000b');
+    assert.equal(convert(1000, {thousandsSeparator: ' '}).toLowerCase(), '1 000b');
   });
 
   it('Should support floats', function(){
-    expect(convert(1.2 * mb).toLowerCase()).to.equal('1.2mb');
-    expect(convert(-1.2 * mb).toLowerCase()).to.equal('-1.2mb');
-    expect(convert(1.2 * kb).toLowerCase()).to.equal('1.2kb');
+    assert.equal(convert(1.2 * mb).toLowerCase(), '1.2mb');
+    assert.equal(convert(-1.2 * mb).toLowerCase(), '-1.2mb');
+    assert.equal(convert(1.2 * kb).toLowerCase(), '1.2kb');
   })
 });
-
-/**
- * Return invalid input values.
- *
- * @returns {*[]}
- */
-function invalidValuesProvider() {
-
-  return [undefined, null, true, false, '', 'string', function(){}, {}];
-}
