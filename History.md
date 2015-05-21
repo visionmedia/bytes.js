@@ -1,5 +1,5 @@
-unreleased
-==========
+2.0.2 / 2015-05-20
+==================
 
   * remove map recreation
   * remove unnecessary object construction
