@@ -4,14 +4,13 @@ Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-
 
 ## Usage
 
-
 ```js
 var bytes = require('bytes');
 ```
 
-#### bytes(number value, [options]): string|null
+#### bytes.format(number value, [options]): string|null
 
-Convert the given value in bytes into a string. If the value is negative, it is kept as such. If it is a float, it is
+Format the given value in bytes into a string. If the value is negative, it is kept as such. If it is a float, it is
  rounded.
 
 **Arguments**
@@ -46,7 +45,7 @@ bytes(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
 ```
 
-#### Bytes(string value): number|null
+#### bytes.parse(string value): number|null
 
 Parse the string value into an integer in bytes. If no unit is given, it is assumed the value is in bytes.
 

@@ -1,19 +1,21 @@
 'use strict';
 
 /**
- * Module exports.
- * @public
- */
-
-module.exports = bytes;
-
-/**
  * Module dependencies.
  * @private
  */
 
 var convert = require('./lib/byte-convert');
 var parse = require('./lib/byte-parse');
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = bytes;
+module.exports.format = convert;
+module.exports.parse = parse;
 
 /**
  *Convert the given value in bytes into a string or parse to string to an integer in bytes.

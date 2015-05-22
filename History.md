@@ -1,3 +1,9 @@
+unreleased
+==========
+
+  * add `.format` export
+  * add `.parse` export
+
 2.0.2 / 2015-05-20
 ==================
 
