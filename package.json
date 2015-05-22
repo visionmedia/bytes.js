@@ -26,7 +26,6 @@
     "mocha": "*"
   },
   "files": [
-    "lib/",
     "History.md",
     "LICENSE",
     "Readme.md",
