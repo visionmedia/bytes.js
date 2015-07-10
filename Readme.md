@@ -1,5 +1,8 @@
 # Bytes utility
 
+[![npm version](https://img.shields.io/npm/v/bytes.svg)](http://badge.fury.io/js/bytes)
+![npm](https://img.shields.io/npm/dm/bytes.svg)
+
 Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.
 
 ## Usage
