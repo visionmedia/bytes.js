@@ -1,5 +1,8 @@
 # Bytes utility
 
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+
 Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.
 
 ## Usage
@@ -81,3 +84,8 @@ component install visionmedia/bytes.js
 ## License 
 
 [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/visionmedia/bytes.js/blob/master/LICENSE)
+
+[downloads-image]: https://img.shields.io/npm/dm/bytes.svg
+[downloads-url]: https://npmjs.org/package/bytes
+[npm-image]: https://img.shields.io/npm/v/bytes.svg
+[npm-url]: https://npmjs.org/package/bytes
