@@ -23,7 +23,7 @@
     }
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "1.21.5"
   },
   "files": [
     "History.md",
