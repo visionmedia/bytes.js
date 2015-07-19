@@ -4,7 +4,8 @@
   "version": "2.1.0",
   "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
   "contributors": [
-    "Jed Watson <jed.watson@me.com>"
+    "Jed Watson <jed.watson@me.com>",
+    "Théo FIDRY <theo.fidry@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
