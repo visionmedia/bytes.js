@@ -67,6 +67,17 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1000, {thousandsSeparator: ' '}).toLowerCase(), '1 000b');
   });
 
+  it('Should support custom precision', function(){
+    assert.equal(bytes.format(kb - 1, {precision: 0}).toLowerCase(), '1023b');
+    assert.equal(bytes.format(kb, {precision: 0}).toLowerCase(), '1kb');
+    assert.equal(bytes.format(1.4 * kb, {precision: 0}).toLowerCase(), '1kb');
+    assert.equal(bytes.format(1.5 * kb, {precision: 0}).toLowerCase(), '2kb');
+    assert.equal(bytes.format(kb - 1, {precision: 1}).toLowerCase(), '1023b');
+    assert.equal(bytes.format(kb, {precision: 1}).toLowerCase(), '1kb');
+    assert.equal(bytes.format(1.04 * kb, {precision: 1}).toLowerCase(), '1kb');
+    assert.equal(bytes.format(1.05 * kb, {precision: 1}).toLowerCase(), '1.1kb');
+  });
+
   it('Should support floats', function(){
     assert.equal(bytes.format(1.2 * mb).toLowerCase(), '1.2mb');
     assert.equal(bytes.format(-1.2 * mb).toLowerCase(), '-1.2mb');
