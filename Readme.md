@@ -28,6 +28,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 
 | Property          | Type   | Description                                                                             |
 |-------------------|--------|-----------------------------------------------------------------------------------------|
+| decimalPlaces | `number`&#124;`null` | Maximum number of decimal places to include in output. Default value to `2`. |
 | thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
 
 **Returns**
@@ -47,6 +48,9 @@ bytes(1000);
 
 bytes(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
+
+bytes(1024 * 1.7, {decimalPlaces: 0});
+// output: '2kB'
 ```
 
 #### bytes.parse(string value): number|null

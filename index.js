@@ -35,6 +35,7 @@ var map = {
  * @param {string|number} value
  * @param {{
  *  case: [string],
+ *  decimalPlaces: [number]
  *  thousandsSeparator: [string]
  *  }} [options] bytes options.
  *
@@ -61,6 +62,7 @@ function bytes(value, options) {
  *
  * @param {number} value
  * @param {object} [options]
+ * @param {number} [options.decimalPlaces=2]
  * @param {string} [options.thousandsSeparator=]
  * @public
  */
@@ -72,20 +74,22 @@ function format(val, options) {
 
   var mag = Math.abs(val);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
+  var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
+  var round = Math.pow(10, decimalPlaces);
   var unit = 'B';
   var value = val;
 
   if (mag >= map.tb) {
-    value = Math.round(value / map.tb * 100) / 100;
+    value = Math.round(value / map.tb * round) / round;
     unit = 'TB';
   } else if (mag >= map.gb) {
-    value = Math.round(value / map.gb * 100) / 100;
+    value = Math.round(value / map.gb * round) / round;
     unit = 'GB';
   } else if (mag >= map.mb) {
-    value = Math.round(value / map.mb * 100) / 100;
+    value = Math.round(value / map.mb * round) / round;
     unit = 'MB';
   } else if (mag >= map.kb) {
-    value = Math.round(value / map.kb * 100) / 100;
+    value = Math.round(value / map.kb * round) / round;
     unit = 'kB';
   }
 
