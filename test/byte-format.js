@@ -78,6 +78,10 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1.05 * kb, {precision: 1}).toLowerCase(), '1.1kb');
   });
 
+  it('Should support fixed precision', function(){
+    assert.equal(bytes.format(kb, {precision: 3, fixed: true}).toLowerCase(), '1.000kb');
+  });
+
   it('Should support floats', function(){
     assert.equal(bytes.format(1.2 * mb).toLowerCase(), '1.2mb');
     assert.equal(bytes.format(-1.2 * mb).toLowerCase(), '-1.2mb');

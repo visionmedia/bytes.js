@@ -75,22 +75,29 @@ function format(val, options) {
   var mag = Math.abs(val);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
   var precision = (options && (typeof options.precision === 'number')) ? options.precision : 2;
+  var fixed = Boolean(options && options.fixed);
   var unit = 'B';
   var value = val;
-  var roundingValue = Math.pow(10, precision);
 
   if (mag >= map.tb) {
-    value = Math.round(value / map.tb * roundingValue) / roundingValue;
+    value /= map.tb;
     unit = 'TB';
   } else if (mag >= map.gb) {
-    value = Math.round(value / map.gb * roundingValue) / roundingValue;
+    value /= map.gb;
     unit = 'GB';
   } else if (mag >= map.mb) {
-    value = Math.round(value / map.mb * roundingValue) / roundingValue;
+    value /= map.mb;
     unit = 'MB';
   } else if (mag >= map.kb) {
-    value = Math.round(value / map.kb * roundingValue) / roundingValue;
+    value /= map.kb;
     unit = 'kB';
+  }
+
+  if (fixed) {
+    value = value.toFixed(precision);
+  } else {
+    var roundingValue = Math.pow(10, precision);
+    value = Math.round(value * roundingValue) / roundingValue;
   }
 
   if (thousandsSeparator) {
