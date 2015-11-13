@@ -2,6 +2,7 @@ undefined
 =========
 
   * add option "decimalPlaces"
+  * add option "fixedDecimals"
 
 2.1.0 / 2015-05-21
 ==================

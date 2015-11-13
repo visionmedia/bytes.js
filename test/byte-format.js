@@ -78,6 +78,10 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1.05 * kb, {decimalPlaces: 1}).toLowerCase(), '1.1kb');
   });
 
+  it('Should support fixed decimal places', function(){
+    assert.equal(bytes.format(kb, {decimalPlaces: 3, fixedDecimals: true}).toLowerCase(), '1.000kb');
+  });
+
   it('Should support floats', function(){
     assert.equal(bytes.format(1.2 * mb).toLowerCase(), '1.2mb');
     assert.equal(bytes.format(-1.2 * mb).toLowerCase(), '-1.2mb');

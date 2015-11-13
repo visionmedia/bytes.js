@@ -36,6 +36,7 @@ var map = {
  * @param {{
  *  case: [string],
  *  decimalPlaces: [number]
+ *  fixedDecimals: [boolean]
  *  thousandsSeparator: [string]
  *  }} [options] bytes options.
  *
@@ -63,41 +64,44 @@ function bytes(value, options) {
  * @param {number} value
  * @param {object} [options]
  * @param {number} [options.decimalPlaces=2]
+ * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
  * @public
  */
 
-function format(val, options) {
-  if (typeof val !== 'number') {
+function format(value, options) {
+  if (typeof value !== 'number') {
     return null;
   }
 
-  var mag = Math.abs(val);
+  var mag = Math.abs(value);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
-  var round = Math.pow(10, decimalPlaces);
+  var fixedDecimals = Boolean(options && options.fixedDecimals);
   var unit = 'B';
-  var value = val;
 
   if (mag >= map.tb) {
-    value = Math.round(value / map.tb * round) / round;
     unit = 'TB';
   } else if (mag >= map.gb) {
-    value = Math.round(value / map.gb * round) / round;
     unit = 'GB';
   } else if (mag >= map.mb) {
-    value = Math.round(value / map.mb * round) / round;
     unit = 'MB';
   } else if (mag >= map.kb) {
-    value = Math.round(value / map.kb * round) / round;
     unit = 'kB';
   }
 
-  if (thousandsSeparator) {
-    value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
+  var val = value / map[unit.toLowerCase()];
+  var str = val.toFixed(decimalPlaces);
+
+  if (!fixedDecimals) {
+    str = str.replace(/(?:\.0*|(\.[^0]+)0+)$/, '$1');
   }
 
-  return value + unit;
+  if (thousandsSeparator) {
+    str = str.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
+  }
+
+  return str + unit;
 }
 
 /**
