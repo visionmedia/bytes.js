@@ -36,6 +36,7 @@ var map = {
  * @param {{
  *  case: [string],
  *  thousandsSeparator: [string]
+ *  decimalPlaces: [number]
  *  }} [options] bytes options.
  *
  * @returns {string|number|null}
@@ -62,6 +63,7 @@ function bytes(value, options) {
  * @param {number} value
  * @param {object} [options]
  * @param {string} [options.thousandsSeparator=]
+ * @param {number} [options.decimalPlaces=2]
  * @public
  */
 
@@ -72,21 +74,30 @@ function format(val, options) {
 
   var mag = Math.abs(val);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
+  var decimalPlaces = (options && (typeof options.decimalPlaces === 'number')) ? options.decimalPlaces : 2;
+  var fixed = Boolean(options && options.fixed);
   var unit = 'B';
   var value = val;
 
   if (mag >= map.tb) {
-    value = Math.round(value / map.tb * 100) / 100;
+    value /= map.tb;
     unit = 'TB';
   } else if (mag >= map.gb) {
-    value = Math.round(value / map.gb * 100) / 100;
+    value /= map.gb;
     unit = 'GB';
   } else if (mag >= map.mb) {
-    value = Math.round(value / map.mb * 100) / 100;
+    value /= map.mb;
     unit = 'MB';
   } else if (mag >= map.kb) {
-    value = Math.round(value / map.kb * 100) / 100;
+    value /= map.kb;
     unit = 'kB';
+  }
+
+  if (fixed) {
+    value = value.toFixed(decimalPlaces);
+  } else {
+    var roundingValue = Math.pow(10, decimalPlaces);
+    value = Math.round(value * roundingValue) / roundingValue;
   }
 
   if (thousandsSeparator) {
