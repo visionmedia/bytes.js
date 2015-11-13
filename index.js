@@ -75,6 +75,7 @@ function format(val, options) {
   var mag = Math.abs(val);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
+  var fixedDecimals = Boolean(options && options.fixedDecimals);
   var round = Math.pow(10, decimalPlaces);
   var unit = 'B';
   var value = val;
@@ -91,6 +92,10 @@ function format(val, options) {
   } else if (mag >= map.kb) {
     value = Math.round(value / map.kb * round) / round;
     unit = 'kB';
+  }
+
+  if (fixedDecimals) {
+    value = value.toFixed(decimalPlaces);
   }
 
   if (thousandsSeparator) {
