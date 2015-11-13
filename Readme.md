@@ -29,7 +29,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 | Property          | Type   | Description                                                                             |
 |-------------------|--------|-----------------------------------------------------------------------------------------|
 | thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
-| precision | `number`&#124;`null` | Maximum number of decimal places to include in output. Default: `2` |
+| decimalPlaces | `number`&#124;`null` | Maximum number of decimal places to include in output. Default: `2` |
 | fixed | `boolean`&#124;`null` | Whether to always display the maximum number of decimal places. Default: `false` |
 
 **Returns**
@@ -50,10 +50,10 @@ bytes(1000);
 bytes(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
 
-bytes(1024 * 1.7, {precision: 0});
+bytes(1024 * 1.7, {decimalPlaces: 0});
 // output: '2kB'
 
-bytes(1024, {precision: 3, fixed: true});
+bytes(1024, {decimalPlaces: 3, fixed: true});
 // output: '1.000kB'
 ```
 

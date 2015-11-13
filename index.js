@@ -36,7 +36,7 @@ var map = {
  * @param {{
  *  case: [string],
  *  thousandsSeparator: [string]
- *  precision: [number]
+ *  decimalPlaces: [number]
  *  }} [options] bytes options.
  *
  * @returns {string|number|null}
@@ -63,7 +63,7 @@ function bytes(value, options) {
  * @param {number} value
  * @param {object} [options]
  * @param {string} [options.thousandsSeparator=]
- * @param {number} [options.precision=2]
+ * @param {number} [options.decimalPlaces=2]
  * @public
  */
 
@@ -74,7 +74,7 @@ function format(val, options) {
 
   var mag = Math.abs(val);
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
-  var precision = (options && (typeof options.precision === 'number')) ? options.precision : 2;
+  var decimalPlaces = (options && (typeof options.decimalPlaces === 'number')) ? options.decimalPlaces : 2;
   var fixed = Boolean(options && options.fixed);
   var unit = 'B';
   var value = val;
@@ -94,9 +94,9 @@ function format(val, options) {
   }
 
   if (fixed) {
-    value = value.toFixed(precision);
+    value = value.toFixed(decimalPlaces);
   } else {
-    var roundingValue = Math.pow(10, precision);
+    var roundingValue = Math.pow(10, decimalPlaces);
     value = Math.round(value * roundingValue) / roundingValue;
   }
 
