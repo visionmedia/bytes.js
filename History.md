@@ -1,5 +1,5 @@
-undefined
-=========
+2.2.0 / 2015-11-13
+==================
 
   * add option "decimalPlaces"
   * add option "fixedDecimals"
