@@ -13,5 +13,6 @@ node_js:
   - "4.0"
   - "4.2"
   - "5.0"
+  - "5.5"
 sudo: false
 script: "npm test"
