@@ -12,6 +12,9 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse(NaN), null);
     assert.strictEqual(bytes.parse(function(){}), null);
     assert.strictEqual(bytes.parse({}), null);
+    assert.strictEqual(bytes.parse('0x11'), null);
+    assert.strictEqual(bytes.parse('250Kg'), null);
+    assert.strictEqual(bytes.parse('250 Kg'), null);
   });
 
   it('Should parse raw number', function(){
@@ -73,7 +76,6 @@ describe('Test byte parse function', function(){
     assert.equal(bytes.parse('0'), 0);
     assert.equal(bytes.parse('-1'), -1);
     assert.equal(bytes.parse('1024'), 1024);
-    assert.equal(bytes.parse('0x11'), 0);
   });
 
   it('Should accept negative values', function(){
