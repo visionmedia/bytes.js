@@ -10,6 +10,7 @@ describe('Test byte format function', function(){
       kb = 1 << 10;
 
   it('Should return null if input invalid', function(){
+    assert.strictEqual(bytes.format(NaN), null);
     assert.strictEqual(bytes.format(undefined), null);
     assert.strictEqual(bytes.format(null), null);
     assert.strictEqual(bytes.format(true), null);

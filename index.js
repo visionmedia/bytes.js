@@ -11,7 +11,6 @@
  * Module exports.
  * @public
  */
-
 module.exports = bytes;
 module.exports.format = format;
 module.exports.parse = parse;
@@ -20,7 +19,6 @@ module.exports.parse = parse;
  * Module variables.
  * @private
  */
-
 var map = {
   b:  1,
   kb: 1 << 10,
@@ -30,7 +28,7 @@ var map = {
 };
 
 /**
- *Convert the given value in bytes into a string or parse to string to an integer in bytes.
+ * Converts the given value in bytes into a string or parse to string to an integer in bytes.
  *
  * @param {string|number} value
  * @param {{
@@ -42,7 +40,6 @@ var map = {
  *
  * @returns {string|number|null}
  */
-
 function bytes(value, options) {
   if (typeof value === 'string') {
     return parse(value);
@@ -56,7 +53,7 @@ function bytes(value, options) {
 }
 
 /**
- * Format the given value in bytes into a string.
+ * Formats the given value in bytes into a string.
  *
  * If the value is negative, it is kept as such. If it is a float,
  * it is rounded.
@@ -66,11 +63,12 @@ function bytes(value, options) {
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
+ *
+ * @returns {string}
  * @public
  */
-
 function format(value, options) {
-  if (typeof value !== 'number') {
+  if (typeof value !== 'number' || isNaN(value)) {
     return null;
   }
 
@@ -105,14 +103,13 @@ function format(value, options) {
 }
 
 /**
- * Parse the string value into an integer in bytes.
+ * Parses the string value into an integer in bytes.
  *
  * If no unit is given, it is assumed the value is in bytes.
  *
- * @param {number|string} val
+ * @param {number|string|null} val
  * @public
  */
-
 function parse(val) {
   if (typeof val === 'number' && !isNaN(val)) {
     return val;
@@ -123,19 +120,14 @@ function parse(val) {
   }
 
   // Test if the string passed is valid
-  var results = val.match(/^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i);
-  var floatValue;
-  var unit = 'b';
-
-  if (!results) {
-    // Nothing could be extracted from the given string
-    floatValue = parseInt(val);
-    unit = 'b'
-  } else {
-    // Retrieve the value and the unit
-    floatValue = parseFloat(results[1]);
-    unit = results[4].toLowerCase();
+  var results = val.match(/^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i);
+  if (results === null) {
+    return null;
   }
+
+  var floatValue = parseFloat(results[1]);
+  var unit = results[4];
+  unit = (unit === undefined) ? 'b' : unit.toLowerCase();
 
   return map[unit] * floatValue;
 }
