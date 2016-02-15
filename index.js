@@ -33,7 +33,7 @@ var map = {
 var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
 
 /**
- *Convert the given value in bytes into a string or parse to string to an integer in bytes.
+ * Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
  * @param {string|number} value
  * @param {{
@@ -69,6 +69,8 @@ function bytes(value, options) {
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
+ *
+ * @returns {string|null}
  * @public
  */
 
@@ -113,6 +115,8 @@ function format(value, options) {
  * If no unit is given, it is assumed the value is in bytes.
  *
  * @param {number|string} val
+ *
+ * @returns {number|null}
  * @public
  */
 
