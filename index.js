@@ -36,7 +36,7 @@ var map = {
 // TODO: use is-finite module?
 var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
 
-var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i;
+var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -137,18 +137,12 @@ function parse(val) {
 
   // Test if the string passed is valid
   var results = parseRegExp.exec(val);
-  var floatValue;
-  var unit = 'b';
-
-  if (!results) {
-    // Nothing could be extracted from the given string
-    floatValue = parseInt(val, 10);
-    unit = 'b'
-  } else {
-    // Retrieve the value and the unit
-    floatValue = parseFloat(results[1]);
-    unit = results[4].toLowerCase();
+  if (results === null) {
+    return null;
   }
+
+  var floatValue = parseFloat(results[1]);
+  var unit = (results[4] || 'b').toLowerCase();
 
   return Math.floor(map[unit] * floatValue);
 }
