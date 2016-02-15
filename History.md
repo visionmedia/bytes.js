@@ -1,3 +1,9 @@
+3.x
+===
+
+  * Stricter parsing of bytes
+    - String is only parsed if units are recognized
+
 2.4.0 / 2016-06-01
 ==================
 
