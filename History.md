@@ -1,5 +1,5 @@
-unreleased
-==========
+2.3.0 / 2016-02-15
+==================
 
   * Drop partial bytes on all parsed units
   * Fix non-finite numbers to `.format` to return `null`
