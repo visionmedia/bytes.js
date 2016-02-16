@@ -2,6 +2,7 @@ unreleased
 ==========
 
   * Fix non-finite numbers to `.format` to return `null`
+  * Fix parsing byte string that looks like hex
   * perf: hoist regular expressions
 
 2.2.0 / 2015-11-13

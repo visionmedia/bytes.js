@@ -142,7 +142,7 @@ function parse(val) {
 
   if (!results) {
     // Nothing could be extracted from the given string
-    floatValue = parseInt(val);
+    floatValue = parseInt(val, 10);
     unit = 'b'
   } else {
     // Retrieve the value and the unit

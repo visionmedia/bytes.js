@@ -73,6 +73,7 @@ describe('Test byte parse function', function(){
     assert.equal(bytes.parse('0'), 0);
     assert.equal(bytes.parse('-1'), -1);
     assert.equal(bytes.parse('1024'), 1024);
+    assert.equal(bytes.parse('0x11'), 0);
   });
 
   it('Should accept negative values', function(){
