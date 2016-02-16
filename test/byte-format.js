@@ -14,6 +14,8 @@ describe('Test byte format function', function(){
     assert.strictEqual(bytes.format(null), null);
     assert.strictEqual(bytes.format(true), null);
     assert.strictEqual(bytes.format(false), null);
+    assert.strictEqual(bytes.format(NaN), null);
+    assert.strictEqual(bytes.format(Infinity), null);
     assert.strictEqual(bytes.format(''), null);
     assert.strictEqual(bytes.format('string'), null);
     assert.strictEqual(bytes.format(function(){}), null);

@@ -29,6 +29,9 @@ var map = {
   tb: ((1 << 30) * 1024)
 };
 
+// TODO: use is-finite module?
+var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
+
 /**
  *Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
@@ -70,7 +73,7 @@ function bytes(value, options) {
  */
 
 function format(value, options) {
-  if (typeof value !== 'number') {
+  if (!numberIsFinite(value)) {
     return null;
   }
 

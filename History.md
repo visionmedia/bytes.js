@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Fix non-finite numbers to `.format` to return `null`
+
 2.2.0 / 2015-11-13
 ==================
 
