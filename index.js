@@ -150,5 +150,5 @@ function parse(val) {
     unit = results[4].toLowerCase();
   }
 
-  return map[unit] * floatValue;
+  return Math.floor(map[unit] * floatValue);
 }

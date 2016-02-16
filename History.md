@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Drop partial bytes on all parsed units
   * Fix non-finite numbers to `.format` to return `null`
   * Fix parsing byte string that looks like hex
   * perf: hoist regular expressions

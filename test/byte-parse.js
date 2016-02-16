@@ -82,6 +82,11 @@ describe('Test byte parse function', function(){
     assert.equal(bytes.parse('-1.5TB'), -1.5 * Math.pow(1024, 4));
   });
 
+  it('Should drop partial bytes', function(){
+    assert.equal(bytes.parse('1.1b'), 1);
+    assert.equal(bytes.parse('1.0001kb'), 1024);
+  });
+
   it('Should allow whitespace', function(){
     assert.equal(bytes.parse('1 TB'), 1 * Math.pow(1024, 4));
   });
