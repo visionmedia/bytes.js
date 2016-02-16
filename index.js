@@ -21,6 +21,10 @@ module.exports.parse = parse;
  * @private
  */
 
+var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
+
+var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
+
 var map = {
   b:  1,
   kb: 1 << 10,
@@ -31,6 +35,8 @@ var map = {
 
 // TODO: use is-finite module?
 var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
+
+var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -99,11 +105,11 @@ function format(value, options) {
   var str = val.toFixed(decimalPlaces);
 
   if (!fixedDecimals) {
-    str = str.replace(/(?:\.0*|(\.[^0]+)0+)$/, '$1');
+    str = str.replace(formatDecimalsRegExp, '$1');
   }
 
   if (thousandsSeparator) {
-    str = str.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSeparator);
+    str = str.replace(formatThousandsRegExp, thousandsSeparator);
   }
 
   return str + unit;
@@ -130,7 +136,7 @@ function parse(val) {
   }
 
   // Test if the string passed is valid
-  var results = val.match(/^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i);
+  var results = parseRegExp.exec(val);
   var floatValue;
   var unit = 'b';
 
