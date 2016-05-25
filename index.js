@@ -47,6 +47,7 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
  *  decimalPlaces: [number]
  *  fixedDecimals: [boolean]
  *  thousandsSeparator: [string]
+ *  spaceBeforeUnit: [boolean]
  *  }} [options] bytes options.
  *
  * @returns {string|number|null}
@@ -75,6 +76,7 @@ function bytes(value, options) {
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
+ * @param {string} [options.spaceBeforeUnit=false]
  *
  * @returns {string|null}
  * @public
@@ -89,6 +91,7 @@ function format(value, options) {
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
+  var spaceBeforeUnit = (options && options.spaceBeforeUnit);
   var unit = 'B';
 
   if (mag >= map.tb) {
@@ -112,6 +115,9 @@ function format(value, options) {
     str = str.replace(formatThousandsRegExp, thousandsSeparator);
   }
 
+  if (spaceBeforeUnit) {
+    str = str + ' ';
+  }
   return str + unit;
 }
 
