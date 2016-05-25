@@ -69,6 +69,14 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1000, {thousandsSeparator: ' '}).toLowerCase(), '1 000b');
   });
 
+  it('Should custom unit separator', function(){
+    assert.equal(bytes.format(1024), '1kB');
+    assert.equal(bytes.format(1024, {unitSeparator: ''}), '1kB');
+    assert.equal(bytes.format(1024, {unitSeparator: null}), '1kB');
+    assert.equal(bytes.format(1024, {unitSeparator: ' '}), '1 kB');
+    assert.equal(bytes.format(1024, {unitSeparator: '\t'}), '1\tkB');
+  });
+
   it('Should support custom number of decimal places', function(){
     assert.equal(bytes.format(kb - 1, {decimalPlaces: 0}).toLowerCase(), '1023b');
     assert.equal(bytes.format(kb, {decimalPlaces: 0}).toLowerCase(), '1kb');

@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Add option "unitSeparator"
+
 2.3.0 / 2016-02-15
 ==================
 
