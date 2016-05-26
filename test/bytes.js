@@ -21,6 +21,9 @@ describe('Test constructor', function(){
   it('Should convert a number into a string with options', function(){
     // This function is testes more accurately in another test suite
     assert.equal(bytes(1000, {thousandsSeparator: ' '}), '1 000B');
+  });
+
+  it('Should insert a space between number and unit', function(){
     // Test space before unit option
     assert.equal(bytes(1024, {spaceBeforeUnit: true}), '1 kB');
   });
