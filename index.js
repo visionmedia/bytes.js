@@ -46,8 +46,8 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
  *  case: [string],
  *  decimalPlaces: [number]
  *  fixedDecimals: [boolean]
- *  thousandsSeparator: [string]
  *  spaceBeforeUnit: [boolean]
+ *  thousandsSeparator: [string]
  *  }} [options] bytes options.
  *
  * @returns {string|number|null}
@@ -75,8 +75,8 @@ function bytes(value, options) {
  * @param {object} [options]
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
- * @param {string} [options.thousandsSeparator=]
  * @param {string} [options.spaceBeforeUnit=false]
+ * @param {string} [options.thousandsSeparator=]
  *
  * @returns {string|null}
  * @public
@@ -118,6 +118,7 @@ function format(value, options) {
   if (spaceBeforeUnit) {
     str = str + ' ';
   }
+
   return str + unit;
 }
 
