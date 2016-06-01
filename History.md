@@ -1,5 +1,5 @@
-unreleased
-==========
+2.4.0 / 2016-06-01
+==================
 
   * Add option "unitSeparator"
 
