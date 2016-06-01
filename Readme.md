@@ -30,6 +30,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 |-------------------|--------|-----------------------------------------------------------------------------------------|
 | decimalPlaces | `number`&#124;`null` | Maximum number of decimal places to include in output. Default value to `2`. |
 | fixedDecimals | `boolean`&#124;`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
+| spaceBeforeUnit | `boolean`&#124;`null`| Whether to add a space before unit. Default value to `false` |
 | thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
 
 **Returns**
@@ -52,6 +53,10 @@ bytes(1000, {thousandsSeparator: ' '});
 
 bytes(1024 * 1.7, {decimalPlaces: 0});
 // output: '2kB'
+
+bytes(1024, {spaceBeforeUnit: true});
+// output: '1 kB'
+
 ```
 
 #### bytes.parse(string value): number|null

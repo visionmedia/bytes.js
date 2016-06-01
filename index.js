@@ -36,7 +36,7 @@ var map = {
 // TODO: use is-finite module?
 var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
 
-var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i;
+var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -46,6 +46,7 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i;
  *  case: [string],
  *  decimalPlaces: [number]
  *  fixedDecimals: [boolean]
+ *  spaceBeforeUnit: [boolean]
  *  thousandsSeparator: [string]
  *  }} [options] bytes options.
  *
@@ -74,6 +75,7 @@ function bytes(value, options) {
  * @param {object} [options]
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
+ * @param {string} [options.spaceBeforeUnit=false]
  * @param {string} [options.thousandsSeparator=]
  *
  * @returns {string|null}
@@ -89,6 +91,7 @@ function format(value, options) {
   var thousandsSeparator = (options && options.thousandsSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
+  var spaceBeforeUnit = (options && options.spaceBeforeUnit);
   var unit = 'B';
 
   if (mag >= map.tb) {
@@ -110,6 +113,10 @@ function format(value, options) {
 
   if (thousandsSeparator) {
     str = str.replace(formatThousandsRegExp, thousandsSeparator);
+  }
+
+  if (spaceBeforeUnit) {
+    str = str + ' ';
   }
 
   return str + unit;
@@ -137,18 +144,12 @@ function parse(val) {
 
   // Test if the string passed is valid
   var results = parseRegExp.exec(val);
-  var floatValue;
-  var unit = 'b';
-
-  if (!results) {
-    // Nothing could be extracted from the given string
-    floatValue = parseInt(val, 10);
-    unit = 'b'
-  } else {
-    // Retrieve the value and the unit
-    floatValue = parseFloat(results[1]);
-    unit = results[4].toLowerCase();
+  if (results === null) {
+    return null;
   }
+
+  var floatValue = parseFloat(results[1]);
+  var unit = (results[4] || 'b').toLowerCase();
 
   return Math.floor(map[unit] * floatValue);
 }
