@@ -25,18 +25,86 @@ var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
 
 var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
 
-var map = {
-  b:  1,
-  kb: 1 << 10,
-  mb: 1 << 20,
-  gb: 1 << 30,
-  tb: ((1 << 30) * 1024)
+var allUnits = {
+  // Metric units
+  b: {val: 1, longName: 'byte', name: 'B'},
+  kb: {val: Math.pow(1000, 1), longName: 'kilobyte', name: "kB"},
+  mb: {val: Math.pow(1000, 2), longName: 'megabyte', name: "MB"},
+  gb: {val: Math.pow(1000, 3), longName: 'gigabyte', name: "GB"},
+  tb: {val: Math.pow(1000, 4), longName: 'terabyte', name: "TB"},
+  pb: {val: Math.pow(1000, 5), longName: 'petabyte', name: "PB"},
+  eb: {val: Math.pow(1000, 6), longName: 'exabyte', name: "EB"},
+  zb: {val: Math.pow(1000, 7), longName: 'zettabyte', name: "ZB"},
+  yb: {val: Math.pow(1000, 8), longName: 'yottabyte', name: "YB"},
+
+  // Binary units
+  kib: {val: Math.pow(1024, 1), longName: 'kibibyte', name: "KiB"},
+  mib: {val: Math.pow(1024, 2), longName: 'mebibyte', name: "MiB"},
+  gib: {val: Math.pow(1024, 3), longName: 'gibibyte', name: "GiB"},
+  tib: {val: Math.pow(1024, 4), longName: 'tebibyte', name: "TiB"},
+  pib: {val: Math.pow(1024, 5), longName: 'pebibyte', name: "PiB"},
+  eib: {val: Math.pow(1024, 6), longName: 'exbibyte', name: "EiB"},
+  zib: {val: Math.pow(1024, 7), longName: 'zebibyte', name: "ZiB"},
+  yib: {val: Math.pow(1024, 8), longName: 'yobibyte', name: "YiB"},
+
+  // Compatibility units
+  _kb: {val: Math.pow(1024, 1), longName: 'kilobyte', name: "kB"},
+  _mb: {val: Math.pow(1024, 2), longName: 'megabyte', name: "MB"},
+  _gb: {val: Math.pow(1024, 3), longName: 'gigabyte', name: "GB"},
+  _tb: {val: Math.pow(1024, 4), longName: 'terabyte', name: "TB"},
 };
+
+
+function _invertUnitMap(expectedUnits) {
+  var orderedUnits = [];
+
+  for (var i=0; i < expectedUnits.length; i++) {
+    var unitData = expectedUnits[i];
+
+    orderedUnits.push(allUnits[unitData]);
+  }
+
+  orderedUnits.sort(function sortLargest(a, b) {
+    return (b.val - a.val);
+  });
+  return orderedUnits;
+}
+
+var metricMap = _invertUnitMap([
+  'b',
+  'kb',
+  'mb',
+  'gb',
+  'tb',
+  'pb',
+  'eb',
+  'zb',
+  'yb',
+]);
+var binaryMap = _invertUnitMap([
+  'b',
+  'kib',
+  'mib',
+  'gib',
+  'tib',
+  'pib',
+  'eib',
+  'zib',
+  'yib',
+]);
+var compatibilityMap = _invertUnitMap([
+  'b',
+  '_kb',
+  '_mb',
+  '_gb',
+  '_tb',
+]);
+
 
 // TODO: use is-finite module?
 var numberIsFinite = Number.isFinite || function (v) { return typeof v === 'number' && isFinite(v); };
 
-var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
+var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *((k|m|g|t|p|e|z|y)?i?(b))?$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -48,6 +116,8 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
  *  fixedDecimals: [boolean]
  *  thousandsSeparator: [string]
  *  unitSeparator: [string]
+ *  mode: [string]
+ *  unit: [string]
  *  }} [options] bytes options.
  *
  * @returns {string|number|null}
@@ -55,7 +125,7 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|b)?$/i;
 
 function bytes(value, options) {
   if (typeof value === 'string') {
-    return parse(value);
+    return parse(value, options);
   }
 
   if (typeof value === 'number') {
@@ -77,6 +147,8 @@ function bytes(value, options) {
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
  * @param {string} [options.unitSeparator=]
+ * @param {string} [options.mode='metric']
+ * @param {string} [options.unit=]
  *
  * @returns {string|null}
  * @public
@@ -92,20 +164,26 @@ function format(value, options) {
   var unitSeparator = (options && options.unitSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
-  var unit = 'B';
+  var mode = (options && options.mode) || 'metric';
+  var expectedUnit = (options && options.unit);
 
-  if (mag >= map.tb) {
-    unit = 'TB';
-  } else if (mag >= map.gb) {
-    unit = 'GB';
-  } else if (mag >= map.mb) {
-    unit = 'MB';
-  } else if (mag >= map.kb) {
-    unit = 'kB';
+  // Find which set of units we're converting to
+  var unitMap = _getUnitMap(mode);
+
+  // Find what to convert to
+  var conversionUnit;
+  if (expectedUnit !== undefined) {
+    // The user specified an expected unit
+    conversionUnit = _findUnit(allUnits, expectedUnit, mode);
+  } else {
+    // The user wants the most appropriate unit
+    conversionUnit = _findLargestUnit(unitMap, mag);
   }
 
-  var val = value / map[unit.toLowerCase()];
+  // Convert the unit
+  var val = value / conversionUnit.val;
   var str = val.toFixed(decimalPlaces);
+  var unit = conversionUnit.name;
 
   if (!fixedDecimals) {
     str = str.replace(formatDecimalsRegExp, '$1');
@@ -119,17 +197,80 @@ function format(value, options) {
 }
 
 /**
+ * Returns an array that tells you what units to convert to and in what order.
+ */
+function _getUnitMap(mode) {
+  // Allow the mode synonym
+  if (mode == 'decimal' || mode == 'metric') {
+    return metricMap;
+  } else if (mode == 'compatibility') {
+    return compatibilityMap;
+  } else if (mode == 'binary') {
+    return binaryMap;
+  } else {
+    throw "bytes.js: invalid mode passed in: " + mode;
+  }
+}
+
+/**
+ * Finds the given unit in the unit map
+ */
+function _findUnit(unitMap, unit, mode) {
+  var conversionUnit;
+
+  unit = unit.toLowerCase();
+
+  // Check the compatibility units first
+  if (mode == 'compatibility') {
+    conversionUnit = allUnits['_' + unit];
+  }
+
+  // Otherwise check the rest of the units
+  if (conversionUnit === undefined) {
+    conversionUnit = allUnits[unit];
+  }
+
+  // Finally if we still didn't find the unit, its an error
+  if (conversionUnit === undefined) {
+    throw "byte.js: unit not found: " + unit;
+  }
+
+  return conversionUnit;
+}
+
+/**
+ * Finds the largest unit that the value can be converted to
+ *
+ * @param {Array} unitMap Array of units sorted with the largest units first
+ * @param {int}   value
+ *
+ * @returns {}
+ * @private
+ */
+function _findLargestUnit(unitMap, value) {
+  for (var i=0; i < unitMap.length; i++) {
+    var unitData = unitMap[i];
+
+    // Find the largest unit to convert to, otherwise use the last one
+    if (value >= unitData.val || i >= unitMap.length - 1) {
+      return unitData;
+    }
+  }
+}
+
+/**
  * Parse the string value into an integer in bytes.
  *
  * If no unit is given, it is assumed the value is in bytes.
  *
  * @param {number|string} val
+ * @param {object} [options]
+ * @param {string} [options.mode='metric']
  *
  * @returns {number|null}
  * @public
  */
-
-function parse(val) {
+function parse(val, options) {
   if (typeof val === 'number' && !isNaN(val)) {
     return val;
   }
@@ -138,14 +279,41 @@ function parse(val) {
     return null;
   }
 
+  var useCompatibility = (options && options.mode == 'compatibility') ? true : false;
+
   // Test if the string passed is valid
   var results = parseRegExp.exec(val);
-  if (results === null) {
+  var floatValue;
+  var unit;
+
+  // No number was extracted from the input string
+  if (!results) {
     return null;
   }
 
-  var floatValue = parseFloat(results[1]);
-  var unit = (results[4] || 'b').toLowerCase();
 
-  return Math.floor(map[unit] * floatValue);
+  // Retrieve the value and the unit
+  floatValue = parseFloat(results[1]);
+  unit = results[4];
+
+  // Default unit if none are specified
+  if (unit === undefined) {
+    unit = 'b';
+  }
+
+  // Make sure we're case-insensitive
+  unit = unit.toLowerCase();
+
+  var unitData;
+  // If we're using compatibility units, try those first
+  if (useCompatibility) {
+    unitData = allUnits['_' + unit];
+  }
+
+  // Try to get the unit from the normal units
+  if (unitData === undefined) {
+    unitData = allUnits[unit];
+  }
+
+  return Math.floor(unitData.val * floatValue);
 }

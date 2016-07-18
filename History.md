@@ -2,6 +2,8 @@
 ===
 
   * Remove support for ComponentJS
+  * Adds ISO/IEC 80000-13:2008 format
+    - Adds compatibility mode for parsing older programs
   * Stricter parsing of bytes
     - String is only parsed if units are recognized
 
