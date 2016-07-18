@@ -11,10 +11,7 @@
  * Module exports.
  * @public
  */
-
-module.exports = bytes;
-module.exports.format = format;
-module.exports.parse = parse;
+module.exports = withDefaultMode('metric');
 
 /**
  * Module variables.
@@ -133,6 +130,42 @@ function bytes(value, options) {
   }
 
   return null;
+}
+
+/**
+ * Creates a library wrapper that forces a certain mode to be default
+ *
+ * @param {string} mode
+ */
+function withDefaultMode(mode) {
+  // Adds the default mode to the method
+  function setDefault(options) {
+    options = (options !== undefined ? options : {});
+
+    if (options.mode === undefined) {
+      options.mode = mode;
+    }
+
+    return options;
+  }
+
+  function bytesWithDefault(value, options) {
+    return bytes(value, setDefault(options));
+  }
+
+  bytesWithDefault.format = function formatWithDefault(value, options) {
+    return format(value, setDefault(options));
+  };
+
+  bytesWithDefault.parse = function formatWithDefault(value, options) {
+    return parse(value, setDefault(options));
+  };
+
+  // Also allow it to act completely like the original module
+  // So we can still change the default mode (but only by makind a new module)
+  bytesWithDefault.withDefaultMode = withDefaultMode;
+
+  return bytesWithDefault;
 }
 
 /**

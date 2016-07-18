@@ -174,6 +174,49 @@ bytes('1kB', {mode: compatibility});
 // output: 1024
 ```
 
+
+#### bytes.withDefaultMode(string mode): object
+
+Returns a new module which acts like the `bytes` module, except with the given mode as the default.
+
+
+**Arguments**
+
+| Name          | Type     | Description        |
+|---------------|----------|--------------------|
+| mode          | `string` | Default mode to use   |
+
+**Returns**
+
+| Name    | Type        | Description             |
+|---------|-------------|-------------------------|
+| results | `object` | Returns the byte.js module, with a default mode |
+
+**Example**
+
+```js
+var bytes = require('bytes').withDefaultMode('compatibility');
+
+bytes('1kB');
+// output: 1024
+
+bytes('1KiB');
+// output: 1024
+
+bytes(1024);
+// output: 1 kB
+
+bytes(1024, {mode: 'metric'});
+// output: 1.02kB
+
+bytes('1kB', {mode: 'metric'});
+// output: 1000
+```
+
+
+
+
+
 ## Installation
 
 ```bash
