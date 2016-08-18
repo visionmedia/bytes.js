@@ -10,17 +10,17 @@ describe('Test constructor', function(){
 
   it('Shoud be able to parse a string into a number', function(){
     // This function is testes more accurately in another test suite
-    assert.equal(bytes('1kB'), 1000);
+    assert.equal(bytes('1kB'), 1024);
   });
 
   it('Should convert a number into a string', function(){
     // This function is testes more accurately in another test suite
-    assert.equal(bytes(1000), '1kB');
+    assert.equal(bytes(1024), '1kB');
   });
 
   it('Should convert a number into a string with options', function(){
     // This function is testes more accurately in another test suite
-    assert.equal(bytes(1000, {unitSeparator: '---'}), '1---kB');
+    assert.equal(bytes(1024, {unitSeparator: '---'}), '1---kB');
   });
 });
 
@@ -54,7 +54,7 @@ describe('Test withDefaultMode', function(){
   });
 
   it('Should not affect older modules', function(){
-    assert.equal(bytes.format(1024), '1.02kB');
+    assert.equal(bytes.format(1024), '1kB');
     assert.equal(binary.format(1024), '1KiB');
   });
 });

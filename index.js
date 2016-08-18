@@ -11,7 +11,7 @@
  * Module exports.
  * @public
  */
-module.exports = withDefaultMode('metric');
+module.exports = withDefaultMode('compatibility');
 
 /**
  * Module variables.

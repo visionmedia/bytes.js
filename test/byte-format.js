@@ -1,7 +1,8 @@
 'use strict';
 
 var assert = require('assert');
-var bytes = require('..');
+var bytes = require('..').withDefaultMode('metric');
+
 
 describe('Test byte format function', function(){
   var tb = Math.pow(1000, 4),
