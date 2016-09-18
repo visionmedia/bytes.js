@@ -99,7 +99,6 @@ bytes('1024');
 
 ```bash
 npm install bytes --save
-component install visionmedia/bytes.js
 ```
 
 ## License 

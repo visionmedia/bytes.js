@@ -1,6 +1,7 @@
 3.x
 ===
 
+  * Remove support for ComponentJS
   * Stricter parsing of bytes
     - String is only parsed if units are recognized
 
