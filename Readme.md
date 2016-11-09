@@ -59,17 +59,18 @@ bytes(1024, {unitSeparator: ' '});
 
 ```
 
-#### bytes.parse(string value): number|null
+#### bytes.parse(string|number value): number|null
 
-Parse the string value into an integer in bytes. If no unit is given, it is assumed the value is in bytes.
+Parse the string value into an integer in bytes. If no unit is given, or `value`
+is a number, it is assumed the value is in bytes.
 
 Supported units and abbreviations are as follows and are case-insensitive:
 
-  * "b" for bytes
-  * "kb" for kilobytes
-  * "mb" for megabytes
-  * "gb" for gigabytes
-  * "tb" for terabytes
+  * `b` for bytes
+  * `kb` for kilobytes
+  * `mb` for megabytes
+  * `gb` for gigabytes
+  * `tb` for terabytes
 
 The units are in powers of two, not ten. This means 1kb = 1024b according to this parser.
 
@@ -77,7 +78,7 @@ The units are in powers of two, not ten. This means 1kb = 1024b according to thi
 
 | Name          | Type   | Description        |
 |---------------|--------|--------------------|
-| value   | `string` | String to parse.   |
+| value   | `string`&#124;`number` | String to parse, or number in bytes.   |
 
 **Returns**
 
@@ -92,6 +93,9 @@ bytes('1kB');
 // output: 1024
 
 bytes('1024');
+// output: 1024
+
+bytes(1024);
 // output: 1024
 ```
 
