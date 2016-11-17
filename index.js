@@ -77,7 +77,7 @@ function bytes(value, options) {
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
  * @param {string} [options.unitSeparator=]
- * @param {string} [options.unitToUse=]
+ * @param {string} [options.outputUnit=]
  *
  * @returns {string|null}
  * @public
@@ -93,10 +93,10 @@ function format(value, options) {
   var unitSeparator = (options && options.unitSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
-  var unitToUse = (options && options.unitToUse) || '';
-  var unit = unitToUse || 'B';
+  var outputUnit = (options && options.outputUnit) || '';
+  var unit = outputUnit || 'B';
 
-  if (!unitToUse) {
+  if (!outputUnit) {
     if (mag >= map.tb) {
       unit = 'TB';
     } else if (mag >= map.gb) {

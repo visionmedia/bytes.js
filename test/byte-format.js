@@ -99,10 +99,10 @@ describe('Test byte format function', function(){
   })
 
   it('Should support user supplied unit choice', function(){
-    assert.equal(bytes.format(12, {unitToUse: 'b'}).toLowerCase(), '12b');
-    assert.equal(bytes.format(12 * kb, {unitToUse: 'kb'}).toLowerCase(), '12kb');
-    assert.equal(bytes.format(12 * mb, {unitToUse: 'mb'}).toLowerCase(), '12mb');
-    assert.equal(bytes.format(12 * gb, {unitToUse: 'gb'}).toLowerCase(), '12gb');
-    assert.equal(bytes.format(12 * tb, {unitToUse: 'tb'}).toLowerCase(), '12tb');
+    assert.equal(bytes.format(12, {outputUnit: 'b'}).toLowerCase(), '12b');
+    assert.equal(bytes.format(12 * kb, {outputUnit: 'kb'}).toLowerCase(), '12kb');
+    assert.equal(bytes.format(12 * mb, {outputUnit: 'mb'}).toLowerCase(), '12mb');
+    assert.equal(bytes.format(12 * gb, {outputUnit: 'gb'}).toLowerCase(), '12gb');
+    assert.equal(bytes.format(12 * tb, {outputUnit: 'tb'}).toLowerCase(), '12tb');
   })
 });
