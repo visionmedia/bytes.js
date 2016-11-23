@@ -104,5 +104,11 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(12 * mb, {outputUnit: 'mb'}).toLowerCase(), '12mb');
     assert.equal(bytes.format(12 * gb, {outputUnit: 'gb'}).toLowerCase(), '12gb');
     assert.equal(bytes.format(12 * tb, {outputUnit: 'tb'}).toLowerCase(), '12tb');
+
+    // check for conversions
+    assert.equal(bytes.format(12 * mb, {outputUnit: 'b'}).toLowerCase(), '12582912b');
+    assert.equal(bytes.format(12 * mb, {outputUnit: 'kb'}).toLowerCase(), '12288kb');
+    assert.equal(bytes.format(12 * gb, {outputUnit: 'mb'}).toLowerCase(), '12288mb');
+    assert.equal(bytes.format(12 * tb, {outputUnit: 'gb'}).toLowerCase(), '12288gb');
   })
 });
