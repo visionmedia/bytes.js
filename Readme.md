@@ -32,7 +32,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 | fixedDecimals | `boolean`&#124;`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
 | thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
 | unitSeparator | `string`&#124;`null` | Separator to use between number and unit. Default value to `''`. |
-| outputUnit | `string`&#124;`null` | The unit in which the result will be returned (TB/GB/MB/KB/B). Default value to `''` (which means auto detect). |
+| unit | `string`&#124;`null` | The unit in which the result will be returned (TB/GB/MB/KB/B). Default value to `''` (which means auto detect). |
 
 **Returns**
 
