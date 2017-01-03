@@ -93,10 +93,10 @@ function format(value, options) {
   var unitSeparator = (options && options.unitSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
-  var unit = (options && options.unit) || '';
-  var unit = unit || 'B';
+  var outputUnit = (options && options.unit) || '';
+  var unit = outputUnit || 'B';
 
-  if (!unit) {
+  if (!outputUnit) {
     if (mag >= map.tb) {
       unit = 'TB';
     } else if (mag >= map.gb) {
