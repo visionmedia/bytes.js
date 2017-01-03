@@ -76,6 +76,7 @@ function bytes(value, options) {
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
+ * @param {string} [options.unit=]
  * @param {string} [options.unitSeparator=]
  *
  * @returns {string|null}
@@ -92,16 +93,19 @@ function format(value, options) {
   var unitSeparator = (options && options.unitSeparator) || '';
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
-  var unit = 'B';
+  var outputUnit = (options && options.unit) || '';
+  var unit = outputUnit || 'B';
 
-  if (mag >= map.tb) {
-    unit = 'TB';
-  } else if (mag >= map.gb) {
-    unit = 'GB';
-  } else if (mag >= map.mb) {
-    unit = 'MB';
-  } else if (mag >= map.kb) {
-    unit = 'kB';
+  if (!outputUnit) {
+    if (mag >= map.tb) {
+      unit = 'TB';
+    } else if (mag >= map.gb) {
+      unit = 'GB';
+    } else if (mag >= map.mb) {
+      unit = 'MB';
+    } else if (mag >= map.kb) {
+      unit = 'kB';
+    }
   }
 
   var val = value / map[unit.toLowerCase()];
