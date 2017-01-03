@@ -76,8 +76,8 @@ function bytes(value, options) {
  * @param {number} [options.decimalPlaces=2]
  * @param {number} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
- * @param {string} [options.unitSeparator=]
  * @param {string} [options.unit=]
+ * @param {string} [options.unitSeparator=]
  *
  * @returns {string|null}
  * @public
