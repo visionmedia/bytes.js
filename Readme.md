@@ -30,7 +30,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 |-------------------|--------|-----------------------------------------------------------------------------------------|
 | decimalPlaces | `number`&#124;`null` | Maximum number of decimal places to include in output. Default value to `2`. |
 | fixedDecimals | `boolean`&#124;`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
-| thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `' '`. |
+| thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
 | unitSeparator | `string`&#124;`null` | Separator to use between number and unit. Default value to `''`. |
 
 **Returns**
