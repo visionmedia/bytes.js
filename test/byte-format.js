@@ -54,7 +54,7 @@ describe('Test byte format function', function(){
 
   it('Should return standard case', function(){
     assert.equal(bytes.format(10), '10B');
-    assert.equal(bytes.format(kb), '1kB');
+    assert.equal(bytes.format(kb), '1KB');
     assert.equal(bytes.format(mb), '1MB');
     assert.equal(bytes.format(gb), '1GB');
     assert.equal(bytes.format(tb), '1TB');
@@ -70,11 +70,11 @@ describe('Test byte format function', function(){
   });
 
   it('Should custom unit separator', function(){
-    assert.equal(bytes.format(1024), '1kB');
-    assert.equal(bytes.format(1024, {unitSeparator: ''}), '1kB');
-    assert.equal(bytes.format(1024, {unitSeparator: null}), '1kB');
-    assert.equal(bytes.format(1024, {unitSeparator: ' '}), '1 kB');
-    assert.equal(bytes.format(1024, {unitSeparator: '\t'}), '1\tkB');
+    assert.equal(bytes.format(1024), '1KB');
+    assert.equal(bytes.format(1024, {unitSeparator: ''}), '1KB');
+    assert.equal(bytes.format(1024, {unitSeparator: null}), '1KB');
+    assert.equal(bytes.format(1024, {unitSeparator: ' '}), '1 KB');
+    assert.equal(bytes.format(1024, {unitSeparator: '\t'}), '1\tKB');
   });
 
   it('Should support custom number of decimal places', function(){

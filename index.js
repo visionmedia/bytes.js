@@ -103,7 +103,7 @@ function format(value, options) {
     } else if (mag >= map.mb) {
       unit = 'MB';
     } else if (mag >= map.kb) {
-      unit = 'kB';
+      unit = 'KB';
     } else {
       unit = 'B';
     }
