@@ -32,7 +32,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 | decimalPlaces | `number`｜`null` | Maximum number of decimal places to include in output. Default value to `2`. |
 | fixedDecimals | `boolean`｜`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
 | thousandsSeparator | `string`｜`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
-| unit | `string`｜`null` | The unit in which the result will be returned (B/kB/MB/GB/TB). Default value to `''` (which means auto detect). |
+| unit | `string`｜`null` | The unit in which the result will be returned (B/KB/MB/GB/TB). Default value to `''` (which means auto detect). |
 | unitSeparator | `string`｜`null` | Separator to use between number and unit. Default value to `''`. |
 
 **Returns**
@@ -45,7 +45,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 
 ```js
 bytes(1024);
-// output: '1kB'
+// output: '1KB'
 
 bytes(1000);
 // output: '1000B'
@@ -54,10 +54,10 @@ bytes(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
 
 bytes(1024 * 1.7, {decimalPlaces: 0});
-// output: '2kB'
+// output: '2KB'
 
 bytes(1024, {unitSeparator: ' '});
-// output: '1 kB'
+// output: '1 KB'
 
 ```
 
@@ -91,7 +91,7 @@ The units are in powers of two, not ten. This means 1kb = 1024b according to thi
 **Example**
 
 ```js
-bytes('1kB');
+bytes('1KB');
 // output: 1024
 
 bytes('1024');

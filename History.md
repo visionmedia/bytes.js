@@ -1,6 +1,7 @@
 3.x
 ===
 
+  * Change "kB" to "KB" in format output
   * Remove support for Node.js 0.6
   * Remove support for ComponentJS
 

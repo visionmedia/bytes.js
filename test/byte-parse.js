@@ -21,7 +21,7 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse(10.5), 10.5);
   });
 
-  it('Should parse kB', function(){
+  it('Should parse KB', function(){
     assert.equal(bytes.parse('1kb'), 1 * Math.pow(1024, 1));
     assert.equal(bytes.parse('1KB'), 1 * Math.pow(1024, 1));
     assert.equal(bytes.parse('1Kb'), 1 * Math.pow(1024, 1));
