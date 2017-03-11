@@ -16,7 +16,13 @@ cache:
   directories:
     - node_modules
 before_install:
+  # Setup Node.js version-specific dependencies
+  - "test $TRAVIS_NODE_VERSION != '0.6' || npm rm --save-dev nyc"
+  - "test $TRAVIS_NODE_VERSION != '0.8' || npm rm --save-dev nyc"
   # Update Node.js modules
   - "test ! -d node_modules || npm prune"
   - "test ! -d node_modules || npm rebuild"
-script: "npm test"
+script:
+  # Run test script, depending on nyc install
+  - "test ! -z $(npm -ps ls nyc) || npm test"
+  - "test   -z $(npm -ps ls nyc) || npm run-script test-ci"

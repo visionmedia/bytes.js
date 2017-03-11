@@ -24,7 +24,8 @@
     }
   },
   "devDependencies": {
-    "mocha": "1.21.5"
+    "mocha": "1.21.5",
+    "nyc": "10.1.2"
   },
   "files": [
     "History.md",
@@ -36,6 +37,8 @@
     "node": ">= 0.6"
   },
   "scripts": {
-    "test": "mocha --check-leaks --reporter spec"
+    "test": "mocha --check-leaks --reporter spec",
+    "test-ci": "nyc --reporter=text npm test",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
   }
 }
