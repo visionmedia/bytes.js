@@ -108,7 +108,7 @@ component install visionmedia/bytes.js
 
 ## License 
 
-[![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/visionmedia/bytes.js/blob/master/LICENSE)
+[MIT](LICENSE)
 
 [downloads-image]: https://img.shields.io/npm/dm/bytes.svg
 [downloads-url]: https://npmjs.org/package/bytes
