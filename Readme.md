@@ -13,7 +13,7 @@ Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-
 var bytes = require('bytes');
 ```
 
-#### bytes.format(number value, [options]): string|null
+#### bytes.format(number value, [options]): string｜null
 
 Format the given value in bytes into a string. If the value is negative, it is kept as such. If it is a float, it is
  rounded.
@@ -29,17 +29,17 @@ Format the given value in bytes into a string. If the value is negative, it is k
 
 | Property          | Type   | Description                                                                             |
 |-------------------|--------|-----------------------------------------------------------------------------------------|
-| decimalPlaces | `number`&#124;`null` | Maximum number of decimal places to include in output. Default value to `2`. |
-| fixedDecimals | `boolean`&#124;`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
-| thousandsSeparator | `string`&#124;`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
-| unit | `string`&#124;`null` | The unit in which the result will be returned (B/kB/MB/GB/TB). Default value to `''` (which means auto detect). |
-| unitSeparator | `string`&#124;`null` | Separator to use between number and unit. Default value to `''`. |
+| decimalPlaces | `number`｜`null` | Maximum number of decimal places to include in output. Default value to `2`. |
+| fixedDecimals | `boolean`｜`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
+| thousandsSeparator | `string`｜`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
+| unit | `string`｜`null` | The unit in which the result will be returned (B/kB/MB/GB/TB). Default value to `''` (which means auto detect). |
+| unitSeparator | `string`｜`null` | Separator to use between number and unit. Default value to `''`. |
 
 **Returns**
 
 | Name    | Type        | Description             |
 |---------|-------------|-------------------------|
-| results | `string`&#124;`null` | Return null upon error. String value otherwise. |
+| results | `string`｜`null` | Return null upon error. String value otherwise. |
 
 **Example**
 
@@ -61,7 +61,7 @@ bytes(1024, {unitSeparator: ' '});
 
 ```
 
-#### bytes.parse(string|number value): number|null
+#### bytes.parse(string｜number value): number｜null
 
 Parse the string value into an integer in bytes. If no unit is given, or `value`
 is a number, it is assumed the value is in bytes.
@@ -80,13 +80,13 @@ The units are in powers of two, not ten. This means 1kb = 1024b according to thi
 
 | Name          | Type   | Description        |
 |---------------|--------|--------------------|
-| value   | `string`&#124;`number` | String to parse, or number in bytes.   |
+| value   | `string`｜`number` | String to parse, or number in bytes.   |
 
 **Returns**
 
 | Name    | Type        | Description             |
 |---------|-------------|-------------------------|
-| results | `number`&#124;`null` | Return null upon error. Value in bytes otherwise. |
+| results | `number`｜`null` | Return null upon error. Value in bytes otherwise. |
 
 **Example**
 
