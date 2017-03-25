@@ -97,4 +97,13 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(-1.2 * mb).toLowerCase(), '-1.2mb');
     assert.equal(bytes.format(1.2 * kb).toLowerCase(), '1.2kb');
   })
+
+  it('Should support custom unit', function(){
+    assert.equal(bytes.format(12 * mb, {unit: 'b'}).toLowerCase(), '12582912b');
+    assert.equal(bytes.format(12 * mb, {unit: 'kb'}).toLowerCase(), '12288kb');
+    assert.equal(bytes.format(12 * gb, {unit: 'mb'}).toLowerCase(), '12288mb');
+    assert.equal(bytes.format(12 * tb, {unit: 'gb'}).toLowerCase(), '12288gb');
+    assert.equal(bytes.format(12 * mb, {unit: ''}).toLowerCase(), '12mb');
+    assert.equal(bytes.format(12 * mb, {unit: 'bb'}).toLowerCase(), '12mb');
+  })
 });
