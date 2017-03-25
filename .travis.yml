@@ -26,3 +26,6 @@ script:
   # Run test script, depending on nyc install
   - "test ! -z $(npm -ps ls nyc) || npm test"
   - "test   -z $(npm -ps ls nyc) || npm run-script test-ci"
+after_script:
+  # Report coverage
+  - "test -d .nyc_output && npm install coveralls@2 && nyc report --reporter=text-lcov | coveralls"
