@@ -1,6 +1,7 @@
 3.x
 ===
 
+  * Remove support for Node.js 0.6
   * Remove support for ComponentJS
 
 2.5.0 / 2017-03-24
