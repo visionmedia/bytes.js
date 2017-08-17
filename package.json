@@ -19,7 +19,7 @@
   ],
   "repository": "visionmedia/bytes.js",
   "devDependencies": {
-    "mocha": "1.21.5",
+    "mocha": "2.5.3",
     "nyc": "10.3.2"
   },
   "files": [
