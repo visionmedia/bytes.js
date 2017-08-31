@@ -7,6 +7,16 @@
 
 Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.
 
+## Installation
+
+This is a [Node.js](https://nodejs.org/en/) module available through the
+[npm registry](https://www.npmjs.com/). Installation is done using the
+[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
+
+```bash
+$ npm install bytes
+```
+
 ## Usage
 
 ```js
@@ -99,12 +109,6 @@ bytes('1024');
 
 bytes(1024);
 // output: 1024
-```
-
-## Installation
-
-```bash
-npm install bytes --save
 ```
 
 ## License 
