@@ -30,8 +30,8 @@ Format the given value in bytes into a string. If the value is negative, it is k
 
 **Arguments**
 
-| Name    | Type   | Description        |
-|---------|--------|--------------------|
+| Name    | Type     | Description        |
+|---------|----------|--------------------|
 | value   | `number` | Value in bytes     |
 | options | `Object` | Conversion options |
 
@@ -47,8 +47,8 @@ Format the given value in bytes into a string. If the value is negative, it is k
 
 **Returns**
 
-| Name    | Type        | Description             |
-|---------|-------------|-------------------------|
+| Name    | Type             | Description                                     |
+|---------|------------------|-------------------------------------------------|
 | results | `string`｜`null` | Return null upon error. String value otherwise. |
 
 **Example**
