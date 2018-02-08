@@ -10,7 +10,7 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse(true), null);
     assert.strictEqual(bytes.parse(false), null);
     assert.strictEqual(bytes.parse(NaN), null);
-    assert.strictEqual(bytes.parse(function(){ }), null);
+    assert.strictEqual(bytes.parse(function(){}), null);
     assert.strictEqual(bytes.parse({}), null);
   });
 
