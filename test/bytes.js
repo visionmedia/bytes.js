@@ -8,7 +8,7 @@ describe('Test constructor', function(){
     assert.equal(typeof bytes, 'function');
   });
 
-  it('Should return null if input invalid', function(){
+  it('Should return null if input is invalid', function(){
     assert.strictEqual(bytes(undefined), null);
     assert.strictEqual(bytes(null), null);
     assert.strictEqual(bytes(true), null);
@@ -18,18 +18,18 @@ describe('Test constructor', function(){
     assert.strictEqual(bytes({}), null);
   });
 
-  it('Shoud be able to parse a string into a number', function(){
-    // This function is testes more accurately in another test suite
+  it('Should be able to parse a string into a number', function(){
+    // This function is tested more accurately in another test suite
     assert.equal(bytes('1KB'), 1024);
   });
 
   it('Should convert a number into a string', function(){
-    // This function is testes more accurately in another test suite
+    // This function is tested more accurately in another test suite
     assert.equal(bytes(1024), '1KB');
   });
 
   it('Should convert a number into a string with options', function(){
-    // This function is testes more accurately in another test suite
+    // This function is tested more accurately in another test suite
     assert.equal(bytes(1000, {thousandsSeparator: ' '}), '1 000B');
   });
 });

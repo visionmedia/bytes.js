@@ -9,7 +9,7 @@ describe('Test byte format function', function(){
       mb = 1 << 20,
       kb = 1 << 10;
 
-  it('Should return null if input invalid', function(){
+  it('Should return null if input is invalid', function(){
     assert.strictEqual(bytes.format(undefined), null);
     assert.strictEqual(bytes.format(null), null);
     assert.strictEqual(bytes.format(true), null);
@@ -60,7 +60,7 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(tb), '1TB');
   });
 
-  it('Support custom thousands separator', function(){
+  it('Should support custom thousands separator', function(){
     assert.equal(bytes.format(1000).toLowerCase(), '1000b');
     assert.equal(bytes.format(1000, {thousandsSeparator: ''}).toLowerCase(), '1000b');
     assert.equal(bytes.format(1000, {thousandsSeparator: null}).toLowerCase(), '1000b');
@@ -69,7 +69,7 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1000, {thousandsSeparator: ' '}).toLowerCase(), '1 000b');
   });
 
-  it('Should custom unit separator', function(){
+  it('Should support custom unit separator', function(){
     assert.equal(bytes.format(1024), '1KB');
     assert.equal(bytes.format(1024, {unitSeparator: ''}), '1KB');
     assert.equal(bytes.format(1024, {unitSeparator: null}), '1KB');
