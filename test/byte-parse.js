@@ -4,7 +4,7 @@ var assert = require('assert');
 var bytes = require('..');
 
 describe('Test byte parse function', function(){
-  it('Should return null if input invalid', function(){
+  it('Should return null if input is invalid', function(){
     assert.strictEqual(bytes.parse(undefined), null);
     assert.strictEqual(bytes.parse(null), null);
     assert.strictEqual(bytes.parse(true), null);
