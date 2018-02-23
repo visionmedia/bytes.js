@@ -19,6 +19,7 @@
   ],
   "repository": "visionmedia/bytes.js",
   "devDependencies": {
+    "eslint": "4.18.1",
     "mocha": "2.5.3",
     "nyc": "10.3.2"
   },
@@ -32,6 +33,7 @@
     "node": ">= 0.8"
   },
   "scripts": {
+    "lint": "eslint .",
     "test": "mocha --check-leaks --reporter spec",
     "test-ci": "nyc --reporter=text npm test",
     "test-cov": "nyc --reporter=html --reporter=text npm test"

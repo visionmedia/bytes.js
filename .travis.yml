@@ -21,6 +21,7 @@ before_install:
   - "npm config set shrinkwrap false"
   # Setup Node.js version-specific dependencies
   - "test $TRAVIS_NODE_VERSION != '0.8' || npm rm --save-dev nyc"
+  - "test $(echo $TRAVIS_NODE_VERSION | cut -d. -f1) -ge 4 || npm rm --save-dev eslint"
   # Update Node.js modules
   - "test ! -d node_modules || npm prune"
   - "test ! -d node_modules || npm rebuild"
@@ -28,6 +29,8 @@ script:
   # Run test script, depending on nyc install
   - "test ! -z $(npm -ps ls nyc) || npm test"
   - "test   -z $(npm -ps ls nyc) || npm run-script test-ci"
+  # Run lint script, depending on eslint install
+  - "test -z $(npm -ps ls eslint) || npm run-script lint"
 after_script:
   # Report coverage
   - "test -d .nyc_output && npm install coveralls@2 && nyc report --reporter=text-lcov | coveralls"
