@@ -5,9 +5,9 @@ var bytes = require('..');
 
 describe('Test byte format function', function(){
   var tb = (1 << 30) * 1024,
-      gb = 1 << 30,
-      mb = 1 << 20,
-      kb = 1 << 10;
+    gb = 1 << 30,
+    mb = 1 << 20,
+    kb = 1 << 10;
 
   it('Should return null if input is invalid', function(){
     assert.strictEqual(bytes.format(undefined), null);
