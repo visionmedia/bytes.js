@@ -108,9 +108,9 @@ describe('Test byte format function', function(){
   })
 
   it('Should support return object', function() {
-    assert.deepEqual(bytes.format(1000, { outputAsObject: true }), {value: '1000',unit: 'B'})
-    assert.equal(bytes.format(1000, {outputAsObject: false}).toLowerCase(), '1000b')
-    assert.deepEqual(bytes.format(1024, { outputAsObject: true }), {value: '1',unit: 'KB'})
-    assert.equal(bytes.format(1024, {outputAsObject: false}).toLowerCase(), '1kb')
+    assert.deepEqual(bytes.format(1000, { outputAsObject: true }), {value: '1000',unit: 'B'});
+    assert.equal(bytes.format(1000, {outputAsObject: false}).toLowerCase(), '1000b');
+    assert.deepEqual(bytes.format(1024, { outputAsObject: true }), {value: '1',unit: 'KB'});
+    assert.equal(bytes.format(1024, {outputAsObject: false}).toLowerCase(), '1kb');
   })
 });
