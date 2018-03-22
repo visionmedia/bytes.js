@@ -44,6 +44,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 | thousandsSeparator | `string`｜`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
 | unit | `string`｜`null` | The unit in which the result will be returned (B/KB/MB/GB/TB). Default value to `''` (which means auto detect). |
 | unitSeparator | `string`｜`null` | Separator to use between number and unit. Default value to `''`. |
+| outputAsObject | `boolean`｜`null` | Whether to return a string, or an object that returns a unitless value and the unit. Default value to `false` |
 
 **Returns**
 
@@ -69,6 +70,8 @@ bytes(1024 * 1.7, {decimalPlaces: 0});
 bytes(1024, {unitSeparator: ' '});
 // output: '1 KB'
 
+bytes(1024, {outputAsObject: true});
+// output: {value: '1',unit: 'KB'}
 ```
 
 #### bytes.parse(string｜number value): number｜null
