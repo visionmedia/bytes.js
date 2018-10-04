@@ -115,11 +115,11 @@ bytes(1024);
 
 [MIT](LICENSE)
 
-[downloads-image]: https://img.shields.io/npm/dm/bytes.svg
-[downloads-url]: https://npmjs.org/package/bytes
-[npm-image]: https://img.shields.io/npm/v/bytes.svg
-[npm-url]: https://npmjs.org/package/bytes
-[travis-image]: https://img.shields.io/travis/visionmedia/bytes.js/master.svg
-[travis-url]: https://travis-ci.org/visionmedia/bytes.js
-[coveralls-image]: https://img.shields.io/coveralls/visionmedia/bytes.js/master.svg
+[coveralls-image]: https://badgen.net/coveralls/c/github/visionmedia/bytes.js/master
 [coveralls-url]: https://coveralls.io/r/visionmedia/bytes.js?branch=master
+[downloads-image]: https://badgen.net/npm/dm/bytes
+[downloads-url]: https://npmjs.org/package/bytes
+[npm-image]: https://badgen.net/npm/node/bytes
+[npm-url]: https://npmjs.org/package/bytes
+[travis-image]: https://badgen.net/travis/visionmedia/bytes.js/master
+[travis-url]: https://travis-ci.org/visionmedia/bytes.js
