@@ -108,7 +108,7 @@ bytes('1024');
 // output: 1024
 
 bytes(1024);
-// output: 1024
+// output: 1KB
 ```
 
 ## License 
