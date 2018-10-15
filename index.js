@@ -75,6 +75,7 @@ function bytes(value, options) {
  * @param {string} [options.thousandsSeparator=]
  * @param {string} [options.unit=]
  * @param {string} [options.unitSeparator=]
+ * @param {boolean} [options.outputAsObject=false]
  *
  * @returns {string|null}
  * @public
@@ -91,6 +92,7 @@ function format(value, options) {
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
   var unit = (options && options.unit) || '';
+  var outputAsObject = Boolean(options && options.outputAsObject);
 
   if (!unit || !map[unit.toLowerCase()]) {
     if (mag >= map.tb) {
@@ -115,6 +117,13 @@ function format(value, options) {
 
   if (thousandsSeparator) {
     str = str.replace(formatThousandsRegExp, thousandsSeparator);
+  }
+
+  if (outputAsObject) {
+    return {
+      value: str,
+      unit: unit
+    };
   }
 
   return str + unitSeparator + unit;
