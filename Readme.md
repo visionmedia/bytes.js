@@ -83,6 +83,7 @@ Supported units and abbreviations are as follows and are case-insensitive:
   * `mb` for megabytes
   * `gb` for gigabytes
   * `tb` for terabytes
+  * `pb` for petabytes
 
 The units are in powers of two, not ten. This means 1kb = 1024b according to this parser.
 

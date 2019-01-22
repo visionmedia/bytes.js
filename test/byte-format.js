@@ -4,6 +4,7 @@ var assert = require('assert');
 var bytes = require('..');
 
 describe('Test byte format function', function(){
+  var pb = Math.pow(1024, 5);
   var tb = (1 << 30) * 1024,
     gb = 1 << 30,
     mb = 1 << 20,
@@ -52,12 +53,19 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(2 * tb).toLowerCase(), '2tb');
   });
 
+  it('Should convert numbers >= 1 125 899 906 842 624 to pb string', function(){
+    assert.equal(bytes.format(pb).toLowerCase(), '1pb');
+    assert.equal(bytes.format(-pb).toLowerCase(), '-1pb');
+    assert.equal(bytes.format(2 * pb).toLowerCase(), '2pb');
+  });
+
   it('Should return standard case', function(){
     assert.equal(bytes.format(10), '10B');
     assert.equal(bytes.format(kb), '1KB');
     assert.equal(bytes.format(mb), '1MB');
     assert.equal(bytes.format(gb), '1GB');
     assert.equal(bytes.format(tb), '1TB');
+    assert.equal(bytes.format(pb), '1PB');
   });
 
   it('Should support custom thousands separator', function(){

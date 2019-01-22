@@ -69,6 +69,23 @@ describe('Test byte parse function', function(){
     assert.equal(bytes.parse('1.5tB'), 1.5 * Math.pow(1024, 4));
   });
 
+  it('Should parse PB', function(){
+    assert.equal(bytes.parse('1pb'), 1 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1PB'), 1 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1Pb'), 1 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1pB'), 1 * Math.pow(1024, 5));
+
+    assert.equal(bytes.parse('0.5pb'), 0.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('0.5PB'), 0.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('0.5Pb'), 0.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('0.5pB'), 0.5 * Math.pow(1024, 5));
+
+    assert.equal(bytes.parse('1.5pb'), 1.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1.5PB'), 1.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1.5Pb'), 1.5 * Math.pow(1024, 5));
+    assert.equal(bytes.parse('1.5pB'), 1.5 * Math.pow(1024, 5));
+  });
+
   it('Should assume bytes when no units', function(){
     assert.equal(bytes.parse('0'), 0);
     assert.equal(bytes.parse('-1'), -1);
