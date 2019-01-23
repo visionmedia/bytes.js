@@ -19,7 +19,7 @@
   ],
   "repository": "visionmedia/bytes.js",
   "devDependencies": {
-    "eslint": "5.12.0",
+    "eslint": "5.12.1",
     "mocha": "5.2.0",
     "nyc": "13.1.0"
   },
