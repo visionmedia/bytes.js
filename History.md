@@ -1,5 +1,5 @@
-unreleased
-==========
+3.1.0 / 2019-01-22
+==================
 
   * Add petabyte (`pb`) support
 
