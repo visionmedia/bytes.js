@@ -112,7 +112,7 @@ bytes(1024);
 // output: 1KB
 ```
 
-## License 
+## License
 
 [MIT](LICENSE)
 
@@ -120,7 +120,7 @@ bytes(1024);
 [coveralls-url]: https://coveralls.io/r/visionmedia/bytes.js?branch=master
 [downloads-image]: https://badgen.net/npm/dm/bytes
 [downloads-url]: https://npmjs.org/package/bytes
-[npm-image]: https://badgen.net/npm/node/bytes
+[npm-image]: https://badgen.net/npm/v/bytes
 [npm-url]: https://npmjs.org/package/bytes
 [travis-image]: https://badgen.net/travis/visionmedia/bytes.js/master
 [travis-url]: https://travis-ci.org/visionmedia/bytes.js
