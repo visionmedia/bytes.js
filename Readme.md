@@ -41,7 +41,7 @@ Format the given value in bytes into a string. If the value is negative, it is k
 |-------------------|--------|-----------------------------------------------------------------------------------------|
 | decimalPlaces | `number`｜`null` | Maximum number of decimal places to include in output. Default value to `2`. |
 | fixedDecimals | `boolean`｜`null` | Whether to always display the maximum number of decimal places. Default value to `false` |
-| thousandsSeparator | `string`｜`null` | Example of values: `' '`, `','` and `.`... Default value to `''`. |
+| thousandsSeparator | `string`｜`null` | Example of values: `' '`, `','` and `'.'`... Default value to `''`. |
 | unit | `string`｜`null` | The unit in which the result will be returned (B/KB/MB/GB/TB). Default value to `''` (which means auto detect). |
 | unitSeparator | `string`｜`null` | Separator to use between number and unit. Default value to `''`. |
 
