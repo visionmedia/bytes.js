@@ -23,6 +23,33 @@ $ npm install bytes
 var bytes = require('bytes');
 ```
 
+#### bytes(number｜string value, [options]): number｜string｜null
+
+Default export function. Delegates to either `bytes.format` or `bytes.parse` based on the type of `value`.
+
+**Arguments**
+
+| Name    | Type     | Description        |
+|---------|----------|--------------------|
+| value   | `number`｜`string` | Number value to format or string value to parse |
+| options | `Object` | Conversion options for `format` |
+
+**Returns**
+
+| Name    | Type             | Description                                     |
+|---------|------------------|-------------------------------------------------|
+| results | `string`｜`number`｜`null` | Return null upon error. Numeric value in bytes, or string value otherwise. |
+
+**Example**
+
+```js
+bytes(1024);
+// output: '1KB'
+
+bytes('1KB');
+// output: 1024
+```
+
 #### bytes.format(number value, [options]): string｜null
 
 Format the given value in bytes into a string. If the value is negative, it is kept as such. If it is a float, it is
@@ -54,21 +81,20 @@ Format the given value in bytes into a string. If the value is negative, it is k
 **Example**
 
 ```js
-bytes(1024);
+bytes.format(1024);
 // output: '1KB'
 
-bytes(1000);
+bytes.format(1000);
 // output: '1000B'
 
-bytes(1000, {thousandsSeparator: ' '});
+bytes.format(1000, {thousandsSeparator: ' '});
 // output: '1 000B'
 
-bytes(1024 * 1.7, {decimalPlaces: 0});
+bytes.format(1024 * 1.7, {decimalPlaces: 0});
 // output: '2KB'
 
-bytes(1024, {unitSeparator: ' '});
+bytes.format(1024, {unitSeparator: ' '});
 // output: '1 KB'
-
 ```
 
 #### bytes.parse(string｜number value): number｜null
@@ -102,14 +128,14 @@ The units are in powers of two, not ten. This means 1kb = 1024b according to thi
 **Example**
 
 ```js
-bytes('1KB');
+bytes.parse('1KB');
 // output: 1024
 
-bytes('1024');
+bytes.parse('1024');
 // output: 1024
 
-bytes(1024);
-// output: 1KB
+bytes.parse(1024);
+// output: 1024
 ```
 
 ## License
