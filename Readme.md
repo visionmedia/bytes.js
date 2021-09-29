@@ -2,7 +2,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
 Utility to parse a string bytes (ex: `1TB`) to bytes (`1099511627776`) and vice-versa.
@@ -116,11 +116,11 @@ bytes(1024);
 
 [MIT](LICENSE)
 
+[ci-image]: https://badgen.net/github/checks/visionmedia/bytes.js/master?label=ci
+[ci-url]: https://github.com/visionmedia/bytes.js/actions?query=workflow%3Aci
 [coveralls-image]: https://badgen.net/coveralls/c/github/visionmedia/bytes.js/master
 [coveralls-url]: https://coveralls.io/r/visionmedia/bytes.js?branch=master
 [downloads-image]: https://badgen.net/npm/dm/bytes
 [downloads-url]: https://npmjs.org/package/bytes
 [npm-image]: https://badgen.net/npm/v/bytes
 [npm-url]: https://npmjs.org/package/bytes
-[travis-image]: https://badgen.net/travis/visionmedia/bytes.js/master
-[travis-url]: https://travis-ci.org/visionmedia/bytes.js
