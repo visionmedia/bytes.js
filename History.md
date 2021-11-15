@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Fix "thousandsSeparator" incorrecting formatting fractional part
+
 3.1.0 / 2019-01-22
 ==================
 

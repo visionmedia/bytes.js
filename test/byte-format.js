@@ -75,6 +75,7 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1000, {thousandsSeparator: '.'}).toLowerCase(), '1.000b');
     assert.equal(bytes.format(1000, {thousandsSeparator: ','}).toLowerCase(), '1,000b');
     assert.equal(bytes.format(1000, {thousandsSeparator: ' '}).toLowerCase(), '1 000b');
+    assert.equal(bytes.format(1005.1005 * kb, {decimalPlaces: 4, thousandsSeparator: '_'}).toLowerCase(), '1_005.1005kb');
   });
 
   it('Should support custom unit separator', function(){
@@ -94,6 +95,7 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(kb, {decimalPlaces: 1}).toLowerCase(), '1kb');
     assert.equal(bytes.format(1.04 * kb, {decimalPlaces: 1}).toLowerCase(), '1kb');
     assert.equal(bytes.format(1.05 * kb, {decimalPlaces: 1}).toLowerCase(), '1.1kb');
+    assert.equal(bytes.format(1.1005 * kb, {decimalPlaces: 4}).toLowerCase(), '1.1005kb');
   });
 
   it('Should support fixed decimal places', function(){
