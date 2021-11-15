@@ -1,5 +1,5 @@
-unreleased
-==========
+3.1.1 / 2021-11-15
+==================
 
   * Fix "thousandsSeparator" incorrecting formatting fractional part
 
