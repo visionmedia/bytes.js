@@ -34,7 +34,7 @@ var map = {
   pb: Math.pow(1024, 5),
 };
 
-var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
+var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb?|mb?|gb?|tb?|pb?)$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
@@ -156,6 +156,7 @@ function parse(val) {
     // Retrieve the value and the unit
     floatValue = parseFloat(results[1]);
     unit = results[4].toLowerCase();
+    if (unit.length === 1) unit += 'b';
   }
 
   return Math.floor(map[unit] * floatValue);
