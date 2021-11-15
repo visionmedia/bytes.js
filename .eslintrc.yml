@@ -1,7 +1,14 @@
 root: true
-extends: eslint:recommended
+extends:
+  - eslint:recommended
+  - plugin:markdown/recommended
 env:
   node: true
+plugins:
+  - markdown
+overrides:
+  - files: '**/*.md'
+    processor: 'markdown/markdown'
 rules:
   eol-last: error
   indent: ["error", 2, { "SwitchCase": 1 }]
