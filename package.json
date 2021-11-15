@@ -21,7 +21,7 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "mocha": "8.4.0",
-    "nyc": "13.3.0"
+    "nyc": "14.1.1"
   },
   "files": [
     "History.md",
