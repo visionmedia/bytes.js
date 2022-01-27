@@ -1,3 +1,8 @@
+unreleased
+==========
+
+  * Fix return value for un-parsable strings
+
 3.1.1 / 2021-11-15
 ==================
 

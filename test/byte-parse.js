@@ -12,6 +12,7 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse(NaN), null);
     assert.strictEqual(bytes.parse(function(){}), null);
     assert.strictEqual(bytes.parse({}), null);
+    assert.strictEqual(bytes.parse('foobar'), null);
   });
 
   it('Should parse raw number', function(){

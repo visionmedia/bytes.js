@@ -16,6 +16,7 @@ describe('Test constructor', function(){
     assert.strictEqual(bytes(NaN), null);
     assert.strictEqual(bytes(function(){}), null);
     assert.strictEqual(bytes({}), null);
+    assert.strictEqual(bytes('foobar'), null);
   });
 
   it('Should be able to parse a string into a number', function(){
