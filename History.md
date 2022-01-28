@@ -1,5 +1,5 @@
-unreleased
-==========
+3.1.2 / 2022-01-27
+==================
 
   * Fix return value for un-parsable strings
 
