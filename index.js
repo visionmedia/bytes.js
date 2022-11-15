@@ -45,6 +45,7 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
  *  decimalPlaces: [number]
  *  fixedDecimals: [boolean]
  *  thousandsSeparator: [string]
+ *  unit: [string]
  *  unitSeparator: [string]
  *  }} [options] bytes options.
  *
@@ -72,7 +73,7 @@ function bytes(value, options) {
  * @param {number} value
  * @param {object} [options]
  * @param {number} [options.decimalPlaces=2]
- * @param {number} [options.fixedDecimals=false]
+ * @param {boolean} [options.fixedDecimals=false]
  * @param {string} [options.thousandsSeparator=]
  * @param {string} [options.unit=]
  * @param {string} [options.unitSeparator=]
