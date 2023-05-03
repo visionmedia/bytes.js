@@ -13,6 +13,7 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse(function(){}), null);
     assert.strictEqual(bytes.parse({}), null);
     assert.strictEqual(bytes.parse('foobar'), null);
+    assert.strictEqual(bytes.parse('.5'), null);
   });
 
   it('Should parse raw number', function(){
@@ -97,6 +98,7 @@ describe('Test byte parse function', function(){
   it('Should accept negative values', function(){
     assert.equal(bytes.parse('-1'), -1);
     assert.equal(bytes.parse('-1024'), -1024);
+    assert.equal(bytes.parse('-.5TB'), -0.5 * Math.pow(1024, 4));
     assert.equal(bytes.parse('-1.5TB'), -1.5 * Math.pow(1024, 4));
   });
 
@@ -107,5 +109,10 @@ describe('Test byte parse function', function(){
 
   it('Should allow whitespace', function(){
     assert.equal(bytes.parse('1 TB'), 1 * Math.pow(1024, 4));
+  });
+
+  it('Should parse decimal strings without a leading 0', function(){
+    assert.equal(bytes.parse('.5GB'), bytes.parse('0.5GB'));
+    assert.equal(bytes.parse('.25tb'), bytes.parse('0.25TB'));
   });
 });
