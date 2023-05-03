@@ -34,7 +34,7 @@ var map = {
   pb: Math.pow(1024, 5),
 };
 
-var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
+var parseRegExp = /^((-|\+)?(\d*(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
 
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
