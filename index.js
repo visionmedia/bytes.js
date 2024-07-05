@@ -39,7 +39,7 @@ var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
- * @param {string|number} value
+ * @param {string|number|bigint} value
  * @param {{
  *  case: [string],
  *  decimalPlaces: [number]
@@ -58,6 +58,10 @@ function bytes(value, options) {
 
   if (typeof value === 'number') {
     return format(value, options);
+  }
+  
+  if (typeof value === 'bigint') {
+    return format(Number(value), options);
   }
 
   return null;
