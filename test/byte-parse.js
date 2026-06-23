@@ -103,6 +103,9 @@ describe('Test byte parse function', function(){
   it('Should drop partial bytes', function(){
     assert.equal(bytes.parse('1.1b'), 1);
     assert.equal(bytes.parse('1.0001kb'), 1024);
+    // the `b` unit must floor like every other unit (not truncate toward zero)
+    assert.equal(bytes.parse('-1.9b'), -2);
+    assert.equal(bytes.parse('-1.9kb'), Math.floor(-1.9 * 1024));
   });
 
   it('Should allow whitespace', function(){
