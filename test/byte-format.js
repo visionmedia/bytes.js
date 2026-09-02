@@ -98,6 +98,11 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1.1005 * kb, {decimalPlaces: 4}).toLowerCase(), '1.1005kb');
   });
 
+  it('Should strip trailing zeros when a fractional zero is interior', function(){
+    assert.equal(bytes.format(1536, {decimalPlaces: 3}), '1.5KB');
+    assert.equal(bytes.format(1075, {decimalPlaces: 3}), '1.05KB');
+  });
+
   it('Should support fixed decimal places', function(){
     assert.equal(bytes.format(kb, {decimalPlaces: 3, fixedDecimals: true}).toLowerCase(), '1.000kb');
   });
