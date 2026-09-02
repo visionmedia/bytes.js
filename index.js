@@ -23,8 +23,6 @@ module.exports.parse = parse;
 
 var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
 
-var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
-
 var map = {
   b:  1,
   kb: 1 << 10,
@@ -112,8 +110,8 @@ function format(value, options) {
   var val = value / map[unit.toLowerCase()];
   var str = val.toFixed(decimalPlaces);
 
-  if (!fixedDecimals) {
-    str = str.replace(formatDecimalsRegExp, '$1');
+  if (!fixedDecimals && str.indexOf('.') !== -1) {
+    str = str.replace(/0+$/, '').replace(/\.$/, '');
   }
 
   if (thousandsSeparator) {
