@@ -102,6 +102,15 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(kb, {decimalPlaces: 3, fixedDecimals: true}).toLowerCase(), '1.000kb');
   });
 
+  it('Should strip trailing zeros even when a leading fraction digit is zero', function(){
+    // 1536 / 1024 = 1.5, toFixed(3) => '1.500'
+    assert.equal(bytes.format(1.5 * kb, {decimalPlaces: 3}).toLowerCase(), '1.5kb');
+    // 1075 / 1024 = 1.0498..., toFixed(3) => '1.050'
+    assert.equal(bytes.format(1075, {decimalPlaces: 3}).toLowerCase(), '1.05kb');
+    // 1024 / 1024 = 1, toFixed(3) => '1.000'
+    assert.equal(bytes.format(kb, {decimalPlaces: 3}).toLowerCase(), '1kb');
+  });
+
   it('Should support floats', function(){
     assert.equal(bytes.format(1.2 * mb).toLowerCase(), '1.2mb');
     assert.equal(bytes.format(-1.2 * mb).toLowerCase(), '-1.2mb');
