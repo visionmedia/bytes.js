@@ -36,6 +36,8 @@ var map = {
 
 var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb|pb)$/i;
 
+var unitList = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+
 /**
  * Convert the given value in bytes into a string or parse to string to an integer in bytes.
  *
@@ -92,8 +94,9 @@ function format(value, options) {
   var decimalPlaces = (options && options.decimalPlaces !== undefined) ? options.decimalPlaces : 2;
   var fixedDecimals = Boolean(options && options.fixedDecimals);
   var unit = (options && options.unit) || '';
+  var autoUnit = !unit || !map[unit.toLowerCase()];
 
-  if (!unit || !map[unit.toLowerCase()]) {
+  if (autoUnit) {
     if (mag >= map.pb) {
       unit = 'PB';
     } else if (mag >= map.tb) {
@@ -111,6 +114,21 @@ function format(value, options) {
 
   var val = value / map[unit.toLowerCase()];
   var str = val.toFixed(decimalPlaces);
+
+  // Rounding to `decimalPlaces` can push `val` up to (or past) 1024, the
+  // threshold that was used to pick `unit` in the first place, e.g.
+  // `bytes(1048575.995, { decimalPlaces: 2 })` would otherwise print
+  // '1024.00KB' instead of rolling over into '1MB'. Only auto-selected
+  // units are corrected; an explicitly requested unit is left as-is.
+  if (autoUnit) {
+    var unitIndex = unitList.indexOf(unit);
+    while (unitIndex < unitList.length - 1 && Math.abs(parseFloat(str)) >= 1024) {
+      unitIndex++;
+      unit = unitList[unitIndex];
+      val = value / map[unit.toLowerCase()];
+      str = val.toFixed(decimalPlaces);
+    }
+  }
 
   if (!fixedDecimals) {
     str = str.replace(formatDecimalsRegExp, '$1');

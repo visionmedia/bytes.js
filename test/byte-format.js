@@ -108,6 +108,21 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1.2 * kb).toLowerCase(), '1.2kb');
   })
 
+  it('Should never round the displayed value up to the next unit\'s threshold', function(){
+    // Rounding to `decimalPlaces` can push a value that was just under a unit
+    // boundary up to (or past) 1024 in the unit that got auto-selected for it,
+    // e.g. printing '1024.00KB' instead of rolling over into '1MB'.
+    assert.equal(bytes.format(mb - 0.005, {decimalPlaces: 2}), '1MB');
+    assert.equal(bytes.format(gb - 0.0001, {decimalPlaces: 2}), '1GB');
+    assert.equal(bytes.format(tb - 0.0001, {decimalPlaces: 2}), '1TB');
+    assert.equal(bytes.format(pb - 0.001, {decimalPlaces: 2}), '1PB');
+    assert.equal(bytes.format(-(mb - 0.005), {decimalPlaces: 2}), '-1MB');
+
+    // An explicitly requested unit is a deliberate choice and must not be
+    // second-guessed the same way.
+    assert.equal(bytes.format(mb - 0.005, {decimalPlaces: 2, unit: 'KB'}), '1024KB');
+  });
+
   it('Should support custom unit', function(){
     assert.equal(bytes.format(12 * mb, {unit: 'b'}).toLowerCase(), '12582912b');
     assert.equal(bytes.format(12 * mb, {unit: 'kb'}).toLowerCase(), '12288kb');
