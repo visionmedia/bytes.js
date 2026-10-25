@@ -119,7 +119,7 @@ function format(value, options) {
   if (thousandsSeparator) {
     str = str.split('.').map(function (s, i) {
       return i === 0
-        ? s.replace(formatThousandsRegExp, thousandsSeparator)
+        ? s.replace(formatThousandsRegExp, function () { return thousandsSeparator; })
         : s
     }).join('.');
   }

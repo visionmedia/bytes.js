@@ -78,6 +78,15 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1005.1005 * kb, {decimalPlaces: 4, thousandsSeparator: '_'}).toLowerCase(), '1_005.1005kb');
   });
 
+  it('Should insert dollar sequences in thousands separators literally', function(){
+    ['$$', '$&', "$`", "$'", '$1'].forEach(function (separator) {
+      assert.equal(bytes.format(1234567.5, {
+        unit: 'B',
+        thousandsSeparator: separator
+      }), '1' + separator + '234' + separator + '567.5B');
+    });
+  });
+
   it('Should support custom unit separator', function(){
     assert.equal(bytes.format(1024), '1KB');
     assert.equal(bytes.format(1024, {unitSeparator: ''}), '1KB');
