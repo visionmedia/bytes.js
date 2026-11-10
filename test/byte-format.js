@@ -78,6 +78,14 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(1005.1005 * kb, {decimalPlaces: 4, thousandsSeparator: '_'}).toLowerCase(), '1_005.1005kb');
   });
 
+  it('Should insert custom thousands separator literally', function(){
+    assert.equal(bytes.format(12345, {unit: 'B', thousandsSeparator: '$$'}), '12$$345B');
+    assert.equal(bytes.format(12345, {unit: 'B', thousandsSeparator: '$&'}), '12$&345B');
+    assert.equal(bytes.format(12345, {unit: 'B', thousandsSeparator: "$'"}), "12$'345B");
+    assert.equal(bytes.format(12345, {unit: 'B', thousandsSeparator: '$`'}), '12$`345B');
+    assert.equal(bytes.format(12345, {unit: 'B', thousandsSeparator: '$1'}), '12$1345B');
+  });
+
   it('Should support custom unit separator', function(){
     assert.equal(bytes.format(1024), '1KB');
     assert.equal(bytes.format(1024, {unitSeparator: ''}), '1KB');
