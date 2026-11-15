@@ -116,4 +116,12 @@ describe('Test byte format function', function(){
     assert.equal(bytes.format(12 * mb, {unit: ''}).toLowerCase(), '12mb');
     assert.equal(bytes.format(12 * mb, {unit: 'bb'}).toLowerCase(), '12mb');
   })
+
+  it('Should auto-select the unit for inherited property names', function(){
+    ['constructor', '__proto__'].forEach(function(unit){
+      assert.strictEqual(bytes.format(kb, {unit: unit}), '1KB');
+      assert.strictEqual(bytes.format(-mb, {unit: unit}), '-1MB');
+      assert.strictEqual(bytes.format(0, {unit: unit}), '0B');
+    });
+  });
 });
