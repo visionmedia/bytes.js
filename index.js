@@ -93,7 +93,7 @@ function format(value, options) {
   var fixedDecimals = Boolean(options && options.fixedDecimals);
   var unit = (options && options.unit) || '';
 
-  if (!unit || !map[unit.toLowerCase()]) {
+  if (!unit || !Object.prototype.hasOwnProperty.call(map, unit.toLowerCase())) {
     if (mag >= map.pb) {
       unit = 'PB';
     } else if (mag >= map.tb) {
