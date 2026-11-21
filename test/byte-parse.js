@@ -15,6 +15,10 @@ describe('Test byte parse function', function(){
     assert.strictEqual(bytes.parse('foobar'), null);
   });
 
+  it('Should return null if input is a non-string object like an array', function(){
+    assert.strictEqual(bytes.parse(['1kb']), null);
+  });
+
   it('Should parse raw number', function(){
     assert.strictEqual(bytes.parse(0), 0);
     assert.strictEqual(bytes.parse(-1), -1);
